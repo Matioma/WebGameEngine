@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-color: #f4f3ee;
+  padding: 20px 120px;
+}
+
+* {
+  color: #463f3a;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.button {
+  color: #f4f3ee;
+  background-color: #e0afa0;
+  border: 1px solid #bcb8b1;
+  display: block;
+  padding: 20px;
+  width: 200px;
+}
+
+.instructions {
+  margin-top: 80px;
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+.social {
+  text-decoration: none;
+  background-color: #e0afa0;
+  color: #f4f3ee;
+  padding: 0px 10px;
+}

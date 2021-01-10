@@ -1,0 +1,15 @@
+nav {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+nav * {
+  text-align: center;
+  text-decoration: none;
+}
+
+nav > a {
+  margin: 2px;
+}
