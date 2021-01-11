@@ -29,8 +29,13 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.errors.length == 0) {
-      this.auth.RegisterUser({ login, password });
-      this.router.navigate(['dashboard']);
+      this.auth.RegisterUser({ login, password }).subscribe((data) => {
+        if (data.success) {
+          this.router.navigate(['dashboard']);
+        } else {
+          this.errors.push(data.error);
+        }
+      });
     }
   }
 }

@@ -8,6 +8,7 @@ interface Credentials {
 
 interface AuthentificationResponse {
   success: boolean;
+  error: string;
 }
 
 @Injectable({

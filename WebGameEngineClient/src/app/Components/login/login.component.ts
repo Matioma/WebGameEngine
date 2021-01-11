@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
     this.auth.LoginUser({ login, password }).subscribe((res) => {
       if (res.success) {
         this.router.navigate(['dashboard']);
-      } else if (res.success == false) {
-        this.errors.push('Wrong Credentials');
+      } else {
+        this.errors.push(res.error);
       }
     });
   }
