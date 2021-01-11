@@ -6,6 +6,10 @@ interface Credentials {
   password: string;
 }
 
+interface AuthentificationResponse {
+  success: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,13 +17,9 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   RegisterUser(data: Credentials) {
-    this.http.post('/api/register', data).subscribe(() => {
-      console.log('sent register request');
-    });
+    return this.http.post<AuthentificationResponse>('/api/register', data);
   }
   LoginUser(data: Credentials) {
-    this.http.post('/api/login', data).subscribe(() => {
-      console.log('sent register request');
-    });
+    return this.http.post<AuthentificationResponse>('/api/login', data);
   }
 }

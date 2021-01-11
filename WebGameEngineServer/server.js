@@ -10,12 +10,15 @@ app.post("/api/register", (req, res) => {
   console.log("Register Called");
   res.json({ success: "true" });
 });
+
 app.post("/api/login", (req, res) => {
   const { login, password } = req.body;
-  console.log(login, password);
 
-  console.log("Login Called");
-  res.json({ success: "true" });
+  if (login === "admin" && password === "admin") {
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
 });
 
 app.listen(port, () => {

@@ -8,20 +8,26 @@ import { AuthService } from '../../Sevices/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private auth: AuthService) {}
   errors = [];
+
+  constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit(): void {}
 
   loginUser(event) {
+    this.errors = [];
     event.preventDefault();
 
     const target = event.target;
-
     const login = target.querySelector('#login').value;
     const password = target.querySelector('#password').value;
 
-    // this.router.navigate(['dashboard']);
-    this.auth.LoginUser({ login, password });
+    this.auth.LoginUser({ login, password }).subscribe((res) => {
+      if (res.success) {
+        this.router.navigate(['dashboard']);
+      } else if (res.success == false) {
+        this.errors.push('Wrong Credentials');
+      }
+    });
   }
 }
