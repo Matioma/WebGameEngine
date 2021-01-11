@@ -22,6 +22,6 @@ export class LoginComponent implements OnInit {
     const password = target.querySelector('#password').value;
 
     // this.router.navigate(['dashboard']);
-    let loginSuccesfully = this.auth.LoginUser({ login, password });
+    this.auth.LoginUser({ login, password });
   }
 }

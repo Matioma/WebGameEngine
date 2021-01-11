@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './Components/register/register.component';
 import { HomeNavigationComponent } from './Components/home-navigation/home-navigation.component';
 import { DashBoardComponent } from './Components/dash-board/dash-board.component';
+
+import { AuthService } from './Sevices/auth.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { DashBoardComponent } from './Components/dash-board/dash-board.component
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
@@ -42,7 +46,7 @@ import { DashBoardComponent } from './Components/dash-board/dash-board.component
     ]),
   ],
 
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

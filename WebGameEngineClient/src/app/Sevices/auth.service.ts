@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 interface Credentials {
   login: string;
@@ -10,12 +10,16 @@ interface Credentials {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   RegisterUser(data: Credentials) {
-    console.log(data);
+    this.http.post('http://localhost:3000/api/register', data).subscribe(() => {
+      console.log('sent register request');
+    });
   }
   LoginUser(data: Credentials) {
-    console.log(data);
+    this.http.post('http://localhost:3000/api/login', data).subscribe(() => {
+      console.log('sent register request');
+    });
   }
 }

@@ -5,11 +5,11 @@ const port = 3000;
 
 app.post("/api/register", (req, res) => {
   console.log("Register Called");
-  res.send("Registration Called");
+  res.json({ success: "true" });
 });
 app.post("/api/login", (req, res) => {
   console.log("Login Called");
-  res.send("Login Called");
+  res.json({ success: "true" });
 });
 
 app.listen(port, () => {
