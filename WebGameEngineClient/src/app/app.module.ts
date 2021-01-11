@@ -27,10 +27,6 @@ import { HomeNavigationComponent } from './Components/home-navigation/home-navig
         component: HomeComponent,
         children: [
           {
-            path: '',
-            component: HomeNavigationComponent,
-          },
-          {
             path: 'login',
             component: LoginComponent,
           },
