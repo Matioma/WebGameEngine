@@ -1,15 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserService } from '../../Sevices/User/user.service';
+import { AuthService } from '../../Sevices/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dash-board',
   templateUrl: './dash-board.component.html',
-  styleUrls: ['./dash-board.component.css']
+  styleUrls: ['./dash-board.component.css'],
 })
 export class DashBoardComponent implements OnInit {
+  userName = '';
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.userService.getUserData().subscribe((data) => {
+      console.log(data);
+      this.userName = data.message;
+    });
   }
 
+  logOut() {
+    this.auth.LogOut().subscribe((data) => {
+      console.log(data);
+      this.router.navigate(['/home']);
+    });
+  }
 }

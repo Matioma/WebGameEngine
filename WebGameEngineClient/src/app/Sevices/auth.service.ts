@@ -23,4 +23,7 @@ export class AuthService {
   LoginUser(data: Credentials) {
     return this.http.post<AuthentificationResponse>('/api/login', data);
   }
+  LogOut() {
+    return this.http.post('/api/logout', {});
+  }
 }

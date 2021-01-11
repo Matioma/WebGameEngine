@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyparser = require("body-parser");
+const session = require("express-session");
 
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
@@ -17,7 +18,17 @@ mongoose.connect(mongoUrl).then(() => {
   console.log("mongose connected ");
 });
 
+app.use(
+  session({
+    secret: "4ASDjfu99485mcccjser",
+    saveUninitialized: false,
+    resave: false,
+  })
+);
+
 app.use(bodyparser.json());
+
+var sess;
 app.post("/api/register", async (req, res) => {
   const { login, password } = req.body;
 
@@ -30,20 +41,45 @@ app.post("/api/register", async (req, res) => {
   //If such login does not exist
   const newUser = new User({ login, password });
   newUser.save();
-  console.log("User", login, "registered");
+  sess = req.session;
+  sess.login = login;
+
   res.json({ success: true, error: "" });
 });
 
 app.post("/api/login", async (req, res) => {
   const { login, password } = req.body;
-
   const result = await User.findOne({ login: login, password: password });
+
+  sess = req.session;
+  sess.login = login;
+  //If user if credentials exist send message Success!!
   if (result) {
     res.json({ success: true, error: "" });
     return;
   }
-
+  //if user credentials have not be found send message wrong credentials
   res.json({ success: false, error: "Wrong Credentials!" });
+});
+
+app.get("/api/userData", (req, res) => {
+  sess = req.session;
+
+  console.log(req.session);
+  if (sess.login) {
+    res.json({ success: true, message: sess.login });
+  } else {
+    res.json({ success: false });
+  }
+});
+
+app.post("/api/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.login(err);
+    }
+  });
+  res.json({ success: true, message: "logged out" });
 });
 
 app.listen(port, () => {
