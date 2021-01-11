@@ -11,6 +11,8 @@ import { HomeNavigationComponent } from './Components/home-navigation/home-navig
 import { DashBoardComponent } from './Components/dash-board/dash-board.component';
 
 import { AuthService } from './Sevices/auth.service';
+import { DashboardGuard } from './Guards/dashboard.guard';
+import { ProjectComponent } from './Components/project/project.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { AuthService } from './Sevices/auth.service';
     RegisterComponent,
     HomeNavigationComponent,
     DashBoardComponent,
+    ProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,11 @@ import { AuthService } from './Sevices/auth.service';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'dashboard', component: DashBoardComponent },
+      {
+        path: 'dashboard',
+        component: DashBoardComponent,
+        canActivate: [DashboardGuard],
+      },
       {
         path: 'home',
         component: HomeComponent,
@@ -46,7 +53,7 @@ import { AuthService } from './Sevices/auth.service';
     ]),
   ],
 
-  providers: [AuthService],
+  providers: [AuthService, DashboardGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

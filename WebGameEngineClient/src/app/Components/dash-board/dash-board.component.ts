@@ -25,7 +25,6 @@ export class DashBoardComponent implements OnInit {
 
   logOut() {
     this.auth.LogOut().subscribe((data) => {
-      console.log(data);
       this.router.navigate(['/home']);
     });
   }

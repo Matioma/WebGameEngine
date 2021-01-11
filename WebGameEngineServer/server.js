@@ -82,6 +82,13 @@ app.post("/api/logout", (req, res) => {
   res.json({ success: true, message: "logged out" });
 });
 
+app.get("/api/loggedIn", (req, res) => {
+  sess = req.session;
+  if (sess.login) {
+    res.json({ loggedIn: true });
+  }
+});
+
 app.listen(port, () => {
   console.log("Web Game Engine Backend running on port ", port);
 });
