@@ -13,12 +13,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   RegisterUser(data: Credentials) {
-    this.http.post('http://localhost:3000/api/register', data).subscribe(() => {
+    this.http.post('/api/register', data).subscribe(() => {
       console.log('sent register request');
     });
   }
   LoginUser(data: Credentials) {
-    this.http.post('http://localhost:3000/api/login', data).subscribe(() => {
+    this.http.post('/api/login', data).subscribe(() => {
       console.log('sent register request');
     });
   }
