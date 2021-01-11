@@ -7,6 +7,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './Components/register/register.component';
 import { HomeNavigationComponent } from './Components/home-navigation/home-navigation.component';
+import { DashBoardComponent } from './Components/dash-board/dash-board.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HomeNavigationComponent } from './Components/home-navigation/home-navig
     HomeComponent,
     RegisterComponent,
     HomeNavigationComponent,
+    DashBoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,7 @@ import { HomeNavigationComponent } from './Components/home-navigation/home-navig
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'dashboard', component: DashBoardComponent },
       {
         path: 'home',
         component: HomeComponent,

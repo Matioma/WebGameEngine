@@ -1,8 +1,14 @@
-<section class="Forms">
+<section class="Forms" (submit)="registerUser($event)">
+  <section class="errors">
+    <p *ngFor="let error of errors">
+      {{error}}
+    </p>
+  </section>
+
   <form>
-    <input type="text" placeholder="Login">
-    <input type="password" placeholder="Password">
-    <input type="password" placeholder="Repeat Password">
+    <input type="text" placeholder="Login" id="login">
+    <input type="password" placeholder="Password" id="password">
+    <input type="password" placeholder="Repeat Password" id="rPassword">
     <input type="submit" class="Submit">
   </form>
 </section>
