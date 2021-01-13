@@ -1,0 +1,22 @@
+.project {
+  padding: 5px;
+  background-color: #8a817c;
+  max-width: 600px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.project > * {
+  color: #f4f3f4;
+  background-color: #e0afa0;
+  border: 1px solid #8a817c;
+}
+
+.project > button {
+  flex-grow: 1;
+}
+.project > input {
+  width: 250px;
+}
