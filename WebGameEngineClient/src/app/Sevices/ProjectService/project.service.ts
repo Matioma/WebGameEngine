@@ -12,7 +12,7 @@ export class ProjectService {
     return this.http.get<Project[]>("api/Projects");
   }
 
-  AddProject(){
-    return this.http.post("api/Projects/add",{ProjectName:"RandomName"});
+  AddProject(data:Project){
+    return this.http.post("api/Projects/add",data);
   }
 }

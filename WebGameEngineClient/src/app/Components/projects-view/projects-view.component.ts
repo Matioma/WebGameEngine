@@ -7,6 +7,10 @@ import {ProjectService} from '../../Sevices/ProjectService/project.service'
   styleUrls: ['./projects-view.component.css'],
 })
 export class ProjectsViewComponent implements OnInit {
+  errors:string[] =[];
+
+
+  shouldShow=false;
   projects;
   constructor(private projSer:ProjectService) {}
 
@@ -17,9 +21,12 @@ export class ProjectsViewComponent implements OnInit {
     });
   }
 
-  AddProject(){
-    this.projSer.AddProject().subscribe(data=>{
+  AddProject(data:Project){
+    this.projSer.AddProject(data).subscribe(data=>{
       console.log(data);
     });
+  }
+  ToggleProject(){
+    this.shouldShow= !this.shouldShow;
   }
 }
