@@ -72,7 +72,6 @@ app.get("/api/userData", (req, res) => {
     res.json({ success: false });
   }
 });
-
 app.post("/api/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -81,13 +80,23 @@ app.post("/api/logout", (req, res) => {
   });
   res.json({ success: true, message: "logged out" });
 });
-
 app.get("/api/loggedIn", (req, res) => {
   sess = req.session;
   if (sess.login) {
     res.json({ loggedIn: true });
   }
 });
+
+app.get('/api/Projects',(req,res)=>{
+  res.json(
+    [
+      {ProjectName:"MyDemoProject"},
+      {ProjectName:"First real project"},
+      {ProjectName:"MyDemoProject"},
+      {ProjectName:"First real project"},
+    ]
+  );
+})
 
 app.listen(port, () => {
   console.log("Web Game Engine Backend running on port ", port);
