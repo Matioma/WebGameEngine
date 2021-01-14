@@ -14,12 +14,12 @@ const dataBaseName = "Credentials";
 const login = "admin";
 const password = "admin";
 const mongoUrl = `mongodb+srv://${login}:${password}@webgameengine.wn0wr.mongodb.net/${dataBaseName}?retryWrites=true&w=majority`;
-mongoose.connect(mongoUrl).then(() => {
+mongoose.connect(mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
   console.log("mongose connected ");
 });
 
 app.use(
-  session({
+  session({ 
     secret: "4ASDjfu99485mcccjser",
     saveUninitialized: false,
     resave: false,

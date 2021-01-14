@@ -1,1 +1,9 @@
-<p>projects-view works!</p>
+
+
+<section>
+    <button (click)="AddProject()">Add Project</button>
+</section>
+
+<section *ngFor="let project of projects">
+    <app-project [projectData]="project"></app-project>
+</section>

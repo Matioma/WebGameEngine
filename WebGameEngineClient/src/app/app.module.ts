@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './Components/register/register.component';
 import { HomeNavigationComponent } from './Components/home-navigation/home-navigation.component';
 import { DashBoardComponent } from './Components/dash-board/dash-board.component';
+import {ProjectsViewComponent} from './Components/projects-view/projects-view.component';
+
 
 import { AuthService } from './Sevices/auth.service';
 import { DashboardGuard } from './Guards/dashboard.guard';
@@ -23,6 +25,7 @@ import { ProjectComponent } from './Components/project/project.component';
     HomeNavigationComponent,
     DashBoardComponent,
     ProjectComponent,
+    ProjectsViewComponent
   ],
   imports: [
     BrowserModule,
