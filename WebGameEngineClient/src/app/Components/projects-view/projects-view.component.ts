@@ -7,7 +7,6 @@ import {ProjectService} from '../../Sevices/ProjectService/project.service'
   styleUrls: ['./projects-view.component.css'],
 })
 export class ProjectsViewComponent implements OnInit {
-
   projects;
   constructor(private projSer:ProjectService) {}
 
@@ -19,8 +18,8 @@ export class ProjectsViewComponent implements OnInit {
   }
 
   AddProject(){
-    
-
-    console.log("Add Project called");
+    this.projSer.AddProject().subscribe(data=>{
+      console.log(data);
+    });
   }
 }

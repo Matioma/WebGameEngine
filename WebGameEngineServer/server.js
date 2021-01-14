@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
 const User = require("./Schemas/user");
+const Project =require("./Schemas/project");
 
 const app = express();
 const port = 3000;
@@ -87,16 +88,26 @@ app.get("/api/loggedIn", (req, res) => {
   }
 });
 
-app.get('/api/Projects',(req,res)=>{
-  res.json(
-    [
-      {ProjectName:"MyDemoProject"},
-      {ProjectName:"First real project"},
-      {ProjectName:"MyDemoProject"},
-      {ProjectName:"First real project"},
-    ]
-  );
+app.get('/api/Projects',async (req,res)=>{
+  sess = req.session;
+
+  let queryRes =await Project.find();
+ 
+  res.json(queryRes);
 })
+
+
+app.post('/api/Projects/add',(req,res)=>{
+  const {ProjectName} =req.body;
+  sess = req.session;
+  const Login= sess.login;
+
+  const project = new Project({Login,ProjectName});
+  project.save();
+  res.json({success:true});
+});
+
+
 
 app.listen(port, () => {
   console.log("Web Game Engine Backend running on port ", port);
