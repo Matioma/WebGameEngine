@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
 import { Project } from '../../Models/Project';
 
@@ -10,24 +10,34 @@ import { Project } from '../../Models/Project';
 export class ProjectComponent implements OnInit {
   @Input() projectData: Project = { ProjectName: 'test' };
 
+  @Output()
+  projectUpdated = new EventEmitter();
+
   // @ViewChild('projInput') input;
   constructor(private projService: ProjectService) {
     this.projectData.ProjectName = 'Something';
     //console.log();
   }
 
-  ngOnInit(): void {
-    // console.log(this.input);
+  onProjectUpdated(message: Object) {
+    this.projectUpdated.emit(message);
   }
+
+  ngOnInit(): void {}
   Edit() {}
   Delete() {
     let projectName = document.getElementById(this.projectData.ProjectName)
       .value;
-    console.log(projectName);
+
     this.projService
       .DeleteProject({ ProjectName: projectName })
       .subscribe((data) => {
-        console.log(data.success);
+        //this.ngOnInit();
+        // console.log('tat');
+        this.onProjectUpdated({ success: true });
+        //this.projectUpdated.emit('This is the data');
+        // console.log(data.success);
+        // this.ngOnInit();
       });
   }
   Open() {}

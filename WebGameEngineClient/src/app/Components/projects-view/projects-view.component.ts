@@ -17,14 +17,14 @@ export class ProjectsViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.projSer.GetProjects().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.projects = data;
     });
   }
 
   AddProject(data: Project) {
     this.projSer.AddProject(data).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.ngOnInit();
     });
   }
@@ -34,5 +34,15 @@ export class ProjectsViewComponent implements OnInit {
   }
   ToggleProject() {
     this.shouldShow = !this.shouldShow;
+  }
+
+  reload() {
+    this.ngOnInit();
+  }
+
+  UpdateProjectsList($event) {
+    if ($event.success) {
+      this.ngOnInit();
+    }
   }
 }

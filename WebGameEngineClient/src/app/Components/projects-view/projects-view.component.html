@@ -17,5 +17,5 @@
 </section>
 
 <section *ngFor="let project of projects">
-  <app-project [projectData]="project"></app-project>
+  <app-project [projectData]="project" (projectUpdated)="projectUpdate($event)"></app-project>
 </section>
