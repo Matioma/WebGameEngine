@@ -1,0 +1,30 @@
+body {
+  padding: 0px;
+}
+
+.ProjectUI {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.GameView {
+  width: 50%;
+  height: 60vh;
+  background-color: black;
+}
+
+.Hierarchy {
+  width: 15%;
+  background-color: gray;
+}
+
+.inspector {
+  width: 35%;
+  background-color: green;
+}
+
+.FilesView {
+  width: 100%;
+  height: 25vh;
+  background-color: greenyellow;
+}

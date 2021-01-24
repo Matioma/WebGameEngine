@@ -32,12 +32,7 @@ export class ProjectComponent implements OnInit {
     this.projService
       .DeleteProject({ ProjectName: projectName })
       .subscribe((data) => {
-        //this.ngOnInit();
-        // console.log('tat');
         this.onProjectUpdated({ success: true });
-        //this.projectUpdated.emit('This is the data');
-        // console.log(data.success);
-        // this.ngOnInit();
       });
   }
   Open() {}
