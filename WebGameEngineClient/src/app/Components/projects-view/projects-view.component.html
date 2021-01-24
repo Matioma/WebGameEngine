@@ -1,21 +1,23 @@
-
-
-<section >
-    <button class="button-small" (click)="ToggleProject()">Add Project</button>
-    <section id="add-project-menu" *ngIf="shouldShow">
-        <section class="errors">
-          <p *ngFor="let error of errors">
-            {{error}}
-          </p>
-        </section>
-        <section class="projectInfo">
-            <input type="text" placeholder="Project Name" id="project Name">
-            <button class="button confirm" (click)="CreateProject()">Create</button>
-            <button class="button cancel" (click)="ToggleProject()">Cancel</button>
-        </section>
+<section class="ProjectNav">
+  <button class="button-small" (click)="ToggleProject()">Add Project</button>
+  <section id="add-project-menu" *ngIf="shouldShow">
+    <section class="errors">
+      <p *ngFor="let error of errors">
+        {{error}}
+      </p>
     </section>
+    <section class="projectInfo">
+      <!-- <form> -->
+      <input type="text" placeholder="Project Name" id="projectName">
+      <section class="buttons">
+        <button class="button confirm" (click)="CreateProject($event)">Create</button>
+        <button class="button cancel" (click)="ToggleProject()">Cancel</button>
+      </section>
+      <!-- </form> -->
+    </section>
+  </section>
 </section>
 
 <section *ngFor="let project of projects">
-    <app-project [projectData]="project"></app-project>
+  <app-project [projectData]="project"></app-project>
 </section>

@@ -1,12 +1,25 @@
-.button-small{
-    width: 100px;
-    height:30px
+.button-small {
+  width: 100px;
+  height: 30px;
 }
 
-.invisible{
-    display: none;
+.invisible {
+  display: none;
 }
 
-.confirm{
-    background-color: ;
+.confirm {
+  background-color: green;
+}
+
+.ProjectNav {
+  width: 400px;
+  margin-bottom: 20px;
+}
+#projectName {
+  width: 100%;
+}
+
+.projectInfo .buttons {
+  display: flex;
+  width: 100%;
 }
