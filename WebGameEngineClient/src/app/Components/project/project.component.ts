@@ -1,6 +1,6 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {Project}from '../../Models/Project';
-
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
+import { Project } from '../../Models/Project';
 
 @Component({
   selector: 'app-project',
@@ -8,14 +8,27 @@ import {Project}from '../../Models/Project';
   styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
-  @Input() projectData:Project={ProjectName:"test"};
-  
-  constructor() {
-    this.projectData.ProjectName="Something";
+  @Input() projectData: Project = { ProjectName: 'test' };
+
+  // @ViewChild('projInput') input;
+  constructor(private projService: ProjectService) {
+    this.projectData.ProjectName = 'Something';
+    //console.log();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.input);
+  }
   Edit() {}
-  Delete() {}
+  Delete() {
+    let projectName = document.getElementById(this.projectData.ProjectName)
+      .value;
+    console.log(projectName);
+    this.projService
+      .DeleteProject({ ProjectName: projectName })
+      .subscribe((data) => {
+        console.log(data.success);
+      });
+  }
   Open() {}
 }

@@ -12,9 +12,9 @@ const app = express();
 const port = 3000;
 
 const dataBaseName = "Credentials";
-const login = "admin";
+const Login = "admin";
 const password = "admin";
-const mongoUrl = `mongodb+srv://${login}:${password}@webgameengine.wn0wr.mongodb.net/${dataBaseName}?retryWrites=true&w=majority`;
+const mongoUrl = `mongodb+srv://${Login}:${password}@webgameengine.wn0wr.mongodb.net/${dataBaseName}?retryWrites=true&w=majority`;
 
 mongoose
   .connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -69,7 +69,7 @@ app.post("/api/login", async (req, res) => {
 app.get("/api/userData", (req, res) => {
   sess = req.session;
 
-  console.log(req.session);
+  // console.log(req.session);
   if (sess.login) {
     res.json({ success: true, message: sess.login });
   } else {
@@ -105,9 +105,23 @@ app.post("/api/Projects/add", (req, res) => {
   sess = req.session;
   const Login = sess.login;
 
-  if (login) {
+  if (Login) {
     const project = new Project({ Login, ProjectName });
     project.save();
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
+});
+
+app.post("/api/Projects/delete", async (req, res) => {
+  const { ProjectName } = req.body;
+  sess = req.session;
+  const Login = sess.login;
+
+  if (Login) {
+    let result = await Project.deleteOne({ Login, ProjectName });
+    console.log(result);
     res.json({ success: true });
   } else {
     res.json({ success: false });
