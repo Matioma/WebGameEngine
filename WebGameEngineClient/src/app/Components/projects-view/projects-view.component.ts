@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from '../../Models/Project';
 import { ProjectService } from '../../Sevices/ProjectService/project.service';
 @Component({
@@ -11,6 +11,8 @@ export class ProjectsViewComponent implements OnInit {
 
   shouldShow = false;
   projects;
+
+  @ViewChild('projectInput') input;
   constructor(private projSer: ProjectService) {}
 
   ngOnInit(): void {
@@ -23,11 +25,12 @@ export class ProjectsViewComponent implements OnInit {
   AddProject(data: Project) {
     this.projSer.AddProject(data).subscribe((data) => {
       console.log(data);
+      this.ngOnInit();
     });
   }
 
-  CreateProject(event) {
-    console.log(event.target);
+  CreateProject() {
+    this.AddProject({ ProjectName: this.input.nativeElement.value });
   }
   ToggleProject() {
     this.shouldShow = !this.shouldShow;

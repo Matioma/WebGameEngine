@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import {Project} from "../../Models/Project";
+import { Project } from '../../Models/Project';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  GetProjects(){
-    return this.http.get<Project[]>("api/Projects");
+  GetProjects() {
+    return this.http.get<Project[]>('api/Projects');
   }
 
-  AddProject(data:Project){
-    return this.http.post("api/Projects/add",data);
+  AddProject(data: Project) {
+    return this.http.post('api/Projects/add', data);
   }
 }

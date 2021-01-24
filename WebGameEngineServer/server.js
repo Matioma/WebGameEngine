@@ -94,9 +94,9 @@ app.get("/api/loggedIn", (req, res) => {
 
 app.get("/api/Projects", async (req, res) => {
   sess = req.session;
-  let queryRes = await Project.find({ login: sess.login });
 
-  console.log(queryRes);
+  let queryRes = await Project.find({ Login: sess.login });
+
   res.json(queryRes);
 });
 
@@ -105,9 +105,13 @@ app.post("/api/Projects/add", (req, res) => {
   sess = req.session;
   const Login = sess.login;
 
-  const project = new Project({ Login, ProjectName });
-  project.save();
-  res.json({ success: true });
+  if (login) {
+    const project = new Project({ Login, ProjectName });
+    project.save();
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
 });
 
 app.listen(port, () => {
