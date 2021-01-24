@@ -26,14 +26,13 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {}
   Edit() {}
   Delete() {
-    let projectName = document.getElementById(this.projectData.ProjectName)
-      .value;
-
-    this.projService
-      .DeleteProject({ ProjectName: projectName })
-      .subscribe((data) => {
-        this.onProjectUpdated({ success: true });
-      });
+    // let projectName = document.getElementById(this.projectData.ProjectName)
+    //   .value;
+    // this.projService
+    //   .DeleteProject({ ProjectName: projectName })
+    //   .subscribe((data) => {
+    //     this.onProjectUpdated({ success: true });
+    //   });
   }
   Open() {}
 }
