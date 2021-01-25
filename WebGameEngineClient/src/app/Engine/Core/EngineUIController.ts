@@ -15,6 +15,6 @@ export class EngineUIController implements UIActions {
 
   SelectObject(gameObject: GameObject) {}
   CreateObject(gameObject: GameObject) {
-    this.engine.curentScene.AddChild(gameObject);
+    this.engine.currentScene.AddChild(gameObject);
   }
 }

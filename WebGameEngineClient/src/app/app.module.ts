@@ -43,7 +43,7 @@ import { HierarchyViewComponent } from './Components/hierarchy-view/hierarchy-vi
         canActivate: [DashboardGuard],
       },
       {
-        path: 'project',
+        path: 'project/:id',
         component: ProjectEditorComponent,
       },
       {

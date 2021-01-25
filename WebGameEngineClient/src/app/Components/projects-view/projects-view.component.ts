@@ -17,25 +17,24 @@ export class ProjectsViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.projSer.GetProjects().subscribe((data) => {
-      // console.log(data);
       this.projects = data;
+      console.log(data);
     });
   }
 
   AddProject(data: Project) {
     this.projSer.AddProject(data).subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       this.ngOnInit();
     });
   }
 
   CreateProject() {
-    this.AddProject({ ProjectName: this.input.nativeElement.value });
+    this.AddProject({ projectName: this.input.nativeElement.value });
   }
   ToggleProject() {
     this.shouldShow = !this.shouldShow;
   }
-
   reload() {
     this.ngOnInit();
   }

@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
 const User = require("./Schemas/user");
-const Project = require("./Schemas/project");
+const ProjectTest = require("./Schemas/demoProject");
+const { Project, Scene } = require("./Schemas/Project");
 
 const app = express();
 const port = 3000;
@@ -95,22 +96,44 @@ app.get("/api/loggedIn", (req, res) => {
 app.get("/api/Projects", async (req, res) => {
   sess = req.session;
 
-  let queryRes = await Project.find({ Login: sess.login });
-
+  let queryRes = await Project.find({ login: sess.login });
   res.json(queryRes);
 });
 
-app.post("/api/Projects/add", (req, res) => {
-  const { ProjectName } = req.body;
+app.get("/api/Project/:id", async (req, res) => {
   sess = req.session;
-  const Login = sess.login;
+  const { id } = req.body;
+  console.log(req.params.id);
+
+  let queryRes = await Project.find({ _id: req.params.id });
+  res.json({ success: true, queryRes });
+});
+
+app.post("/api/Projects/add", (req, res) => {
+  const { projectName } = req.body;
+  console.log(projectName, "Here we go");
+  //const projectName = "Awesome Project";
+
+  sess = req.session;
+  const login = sess.login;
 
   if (Login) {
-    const project = new Project({ Login, ProjectName });
+    let defaultScene = {
+      behaviours: [],
+      children: [],
+      name: "Default Scene",
+    };
+    const project = new Project({
+      login,
+      projectName,
+      currentScene: defaultScene,
+    });
+
+    // const project = new ProjectTest({ Login, ProjectName });
     project.save();
-    res.json({ success: true });
+    res.json({ success: true, message: project });
   } else {
-    res.json({ success: false });
+    res.json({ success: false, message: "Cookie is Missing" });
   }
 });
 
@@ -120,7 +143,7 @@ app.post("/api/Projects/delete", async (req, res) => {
   const Login = sess.login;
 
   if (Login) {
-    let result = await Project.deleteOne({ Login, ProjectName });
+    let result = await ProjectTest.deleteOne({ Login, ProjectName });
     console.log(result);
     res.json({ success: true });
   } else {
@@ -128,12 +151,26 @@ app.post("/api/Projects/delete", async (req, res) => {
   }
 });
 
-app.post("/api/Projects/save", (req, res) => {
+app.post("/api/Projects/save", async (req, res) => {
   sess = req.session;
-  const Login = sess.login;
+  const login = sess.login;
+  //const login = "Cool";
+
+  const projectName = "test";
+  const { curentScene } = req.body;
   console.log(req.body);
-  console.log(req.body.curentScene.children);
-  res.json({ cool: "Awesome" });
+
+  if (login) {
+    const project = new Project({
+      login,
+      projectName,
+      currentScene,
+    });
+    project.save();
+    res.json({ success: true, message: `${project} save to the data base` });
+  } else {
+    res.json({ success: false, message: "Cookie missing" });
+  }
 });
 
 app.listen(port, () => {
