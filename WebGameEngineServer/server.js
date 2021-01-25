@@ -161,11 +161,10 @@ app.post("/api/Projects/save", async (req, res) => {
   console.log(id, currentScene);
 
   if (login) {
-    //Project.updateOne({id, currentScene});
-
     const doc = await Project.findById(id);
 
-    const update = { projectName: "AWESOME CHANGED PROJECCT" };
+    const newScene = currentScene;
+    const update = { currentScene: newScene };
 
     await doc.updateOne(update);
 
