@@ -105,13 +105,14 @@ app.get("/api/Project/:id", async (req, res) => {
   const { id } = req.body;
   console.log(req.params.id);
 
-  let queryRes = await Project.find({ _id: req.params.id });
-  res.json({ success: true, queryRes });
+  let result = await Project.findById({ _id: req.params.id });
+
+  res.json({ success: true, result });
 });
 
 app.post("/api/Projects/add", (req, res) => {
   const { projectName } = req.body;
-  console.log(projectName, "Here we go");
+
   //const projectName = "Awesome Project";
 
   sess = req.session;
@@ -129,7 +130,6 @@ app.post("/api/Projects/add", (req, res) => {
       currentScene: defaultScene,
     });
 
-    // const project = new ProjectTest({ Login, ProjectName });
     project.save();
     res.json({ success: true, message: project });
   } else {
@@ -154,23 +154,35 @@ app.post("/api/Projects/delete", async (req, res) => {
 app.post("/api/Projects/save", async (req, res) => {
   sess = req.session;
   const login = sess.login;
-  //const login = "Cool";
 
   const projectName = "test";
-  const { curentScene } = req.body;
-  console.log(req.body);
+  const { id, currentScene } = req.body;
+
+  console.log(id, currentScene);
 
   if (login) {
-    const project = new Project({
-      login,
-      projectName,
-      currentScene,
-    });
-    project.save();
-    res.json({ success: true, message: `${project} save to the data base` });
-  } else {
-    res.json({ success: false, message: "Cookie missing" });
-  }
+    //Project.updateOne({id, currentScene});
+
+    const doc = await Project.findById(id);
+
+    const update = { projectName: "AWESOME CHANGED PROJECCT" };
+
+    await doc.updateOne(update);
+
+    // Project.updateOne({ id }, { projectName: "AWESOME CHANGED PROJECCT" });
+    console.log("updated");
+    // const project = new Project({
+    //   login,
+    //   projectName,
+    //   currentScene,
+    // });
+
+    //project.save();
+    //res.json({ success: true, message: ` save to the data base` });
+  } //{
+  //res.json({ success: false, message: "Cookie missing" });
+  //}
+  res.json({ success: true, message: ` save to the data base` });
 });
 
 app.listen(port, () => {

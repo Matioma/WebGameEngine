@@ -22,13 +22,13 @@ export class ProjectService {
     return this.http.post('/api/Projects/delete', data);
   }
 
-  SaveProject(engine: MainEngine) {
-    return this.http.post('api/Projects/save', engine);
+  SaveProject(object: any) {
+    return this.http.post('api/Projects/save', object);
   }
 
   GetProject(projectId) {
     // console.log(id, 'sent');//
     // let id = { id: projectId };
-    return this.http.get<Scene>(`api/Project/${projectId}`);
+    return this.http.get(`api/Project/${projectId}`);
   }
 }

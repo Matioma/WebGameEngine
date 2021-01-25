@@ -12,7 +12,8 @@ import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
   styleUrls: ['./project-editor.component.css'],
 })
 export class ProjectEditorComponent implements OnInit {
-  id;
+  id: String;
+  projectName: String;
 
   EngineInstance: MainEngine;
   Controller: EngineUIController;
@@ -32,11 +33,12 @@ export class ProjectEditorComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.projectService.GetProject(this.id).subscribe((data) => {
-      //this.EngineInstance = data;
-      this.EngineInstance.currentScene = data;
-      console.log(this.EngineInstance);
+      //this.EngineInstance.currentScene = data.result.currentScene;
       console.log(data);
-      // console.log(data);
+      this.id = data.result._id;
+      this.projectName = data.result.projectName;
+
+      // console.log(data.result);
     });
   }
 
@@ -49,8 +51,13 @@ export class ProjectEditorComponent implements OnInit {
   }
 
   Save() {
-    this.projectService.SaveProject(this.EngineInstance).subscribe((data) => {
-      console.log(data);
-    });
+    this.projectService
+      .SaveProject({
+        id: this.id,
+        currentScene: this.EngineInstance.currentScene,
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }
