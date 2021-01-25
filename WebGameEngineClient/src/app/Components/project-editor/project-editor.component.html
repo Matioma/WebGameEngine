@@ -6,11 +6,12 @@
 
 
 <main class="ProjectUI">
+
   <section class="GameView">
-    <canvas id="canvas" width="550" height="450"></canvas>
+    <canvas #gameCanvas></canvas>
   </section>
   <section class="Hierarchy">
-    Hierarchy
+    <app-hierarchy-view [projectData]=EngineInstance.curentScene></app-hierarchy-view>
   </section>
   <section class="inspector">
     Inspector
@@ -21,4 +22,4 @@
 </main>
 
 
-<button (click)="Demo()">TEst</button>
+<!-- <button (click)="Demo()">TEst</button> -->

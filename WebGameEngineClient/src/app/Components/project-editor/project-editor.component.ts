@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/Sevices/auth.service';
 
 import { MainEngine } from '../../Engine/MainEngine';
@@ -10,9 +10,21 @@ declare const MyTest: any;
   styleUrls: ['./project-editor.component.css'],
 })
 export class ProjectEditorComponent implements OnInit {
-  EngineInstance: MainEngine = new MainEngine();
+  EngineInstance: MainEngine;
+
+  @ViewChild('gameCanvas') canvas: ElementRef;
 
   constructor(private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.EngineInstance = new MainEngine();
+  }
+
+  ngAfterViewInit(): void {
+    this.EngineInstance.InitializeRenderer(this.canvas);
+  }
+
+  Play() {
+    this.EngineInstance.Run();
+  }
 }

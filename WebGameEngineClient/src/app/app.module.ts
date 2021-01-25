@@ -15,6 +15,7 @@ import { AuthService } from './Sevices/auth.service';
 import { DashboardGuard } from './Guards/dashboard.guard';
 import { ProjectComponent } from './Components/project/project.component';
 import { ProjectEditorComponent } from './Components/project-editor/project-editor.component';
+import { HierarchyViewComponent } from './Components/hierarchy-view/hierarchy-view.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProjectEditorComponent } from './Components/project-editor/project-edit
     ProjectComponent,
     ProjectsViewComponent,
     ProjectEditorComponent,
+    HierarchyViewComponent,
   ],
   imports: [
     BrowserModule,
