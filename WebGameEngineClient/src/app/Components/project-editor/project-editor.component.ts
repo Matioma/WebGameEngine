@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/Sevices/auth.service';
 
 import { MainEngine } from '../../Engine/MainEngine';
-declare const MyTest: any;
+import { EngineUIController } from '../../Engine/Core/EngineUIController';
 
 @Component({
   selector: 'app-project-editor',
@@ -11,6 +11,7 @@ declare const MyTest: any;
 })
 export class ProjectEditorComponent implements OnInit {
   EngineInstance: MainEngine;
+  Controller: EngineUIController;
 
   @ViewChild('gameCanvas') canvas: ElementRef;
 
@@ -18,6 +19,7 @@ export class ProjectEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.EngineInstance = new MainEngine();
+    this.Controller = new EngineUIController(this.EngineInstance);
   }
 
   ngAfterViewInit(): void {
