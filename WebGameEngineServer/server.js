@@ -128,6 +128,14 @@ app.post("/api/Projects/delete", async (req, res) => {
   }
 });
 
+app.post("/api/Projects/save", (req, res) => {
+  sess = req.session;
+  const Login = sess.login;
+  console.log(req.body);
+  console.log(req.body.curentScene.children);
+  res.json({ cool: "Awesome" });
+});
+
 app.listen(port, () => {
   console.log("Web Game Engine Backend running on port ", port);
 });

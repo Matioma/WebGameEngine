@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/Sevices/auth.service';
 
 import { MainEngine } from '../../Engine/MainEngine';
 import { EngineUIController } from '../../Engine/Core/EngineUIController';
+import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
 
 @Component({
   selector: 'app-project-editor',
@@ -15,7 +16,10 @@ export class ProjectEditorComponent implements OnInit {
 
   @ViewChild('gameCanvas') canvas: ElementRef;
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private projectService: ProjectService
+  ) {}
 
   ngOnInit(): void {
     this.EngineInstance = new MainEngine();
@@ -28,5 +32,11 @@ export class ProjectEditorComponent implements OnInit {
 
   Play() {
     this.EngineInstance.Run();
+  }
+
+  Save() {
+    this.projectService.SaveProject(this.EngineInstance).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

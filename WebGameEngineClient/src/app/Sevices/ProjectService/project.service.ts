@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MainEngine } from '../../Engine/MainEngine';
 
 import { Project } from '../../Models/Project';
 @Injectable({
@@ -18,5 +19,9 @@ export class ProjectService {
 
   DeleteProject(data: Project) {
     return this.http.post('/api/Projects/delete', data);
+  }
+
+  SaveProject(engine: MainEngine) {
+    return this.http.post('api/Projects/save', engine);
   }
 }
