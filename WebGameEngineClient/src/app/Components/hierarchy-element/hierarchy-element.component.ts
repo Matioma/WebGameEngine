@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameObject } from 'src/app/Engine/Core/Core';
-import { EditorController } from 'src/app/Engine/Core/EngineUIController';
+import { EditorController } from 'src/app/Engine/Core/UIController';
 
 @Component({
   selector: 'app-hierarchy-element',
@@ -15,8 +15,6 @@ export class HierarchyElementComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
-    // console.log(this.object);
-
-    console.log(EditorController.getInstance().id);
+    EditorController.getInstance().SelectObject(this.object);
   }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 // import { Script } from 'vm';
 import { MainEngine } from '../MainEngine';
-import { EngineUIController } from './EngineUIController';
 
 export class Core {
   constructor() {
@@ -107,5 +106,12 @@ export class Scene extends GameObject {
   update() {
     super.update();
     console.log(`${this.name} is being updated `);
+  }
+}
+
+export class ProjectModel {
+  project: GameProject;
+  constructor(project: GameProject) {
+    this.project = project;
   }
 }

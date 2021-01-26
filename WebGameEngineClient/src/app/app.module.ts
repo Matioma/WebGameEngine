@@ -17,6 +17,7 @@ import { ProjectComponent } from './Components/project/project.component';
 import { ProjectEditorComponent } from './Components/project-editor/project-editor.component';
 import { HierarchyViewComponent } from './Components/hierarchy-view/hierarchy-view.component';
 import { HierarchyElementComponent } from './Components/hierarchy-element/hierarchy-element.component';
+import { InspectorViewComponent } from './Components/inspector-view/inspector-view.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HierarchyElementComponent } from './Components/hierarchy-element/hierar
     ProjectEditorComponent,
     HierarchyViewComponent,
     HierarchyElementComponent,
+    InspectorViewComponent,
   ],
   imports: [
     BrowserModule,

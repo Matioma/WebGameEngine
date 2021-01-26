@@ -1,5 +1,5 @@
 <button (click)="CreateGameObject()">Add</button>
 
-<li *ngFor="let child of scene.children">
+<li *ngFor="let child of projectModel.project.scene.children">
   <app-hierarchy-element [object]=child></app-hierarchy-element>
 </li>

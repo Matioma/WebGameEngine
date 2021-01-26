@@ -8,15 +8,14 @@
 
 
 <main class="ProjectUI">
-
   <section class="GameView">
     <canvas #gameCanvas></canvas>
   </section>
   <section class="Hierarchy">
-    <app-hierarchy-view [scene]=gameProject.scene [controller]=Controller></app-hierarchy-view>
+    <app-hierarchy-view [projectModel]=EngineInstance.projectModel></app-hierarchy-view>
   </section>
   <section class="inspector">
-    Inspector
+    <app-inspector-view></app-inspector-view>
   </section>
   <section class="FilesView">
     Files
