@@ -143,16 +143,24 @@ app.post("/api/Projects/save", async (req, res) => {
   sess = req.session;
   const login = sess.login;
 
-  const projectName = "test";
-  const { id, currentScene } = req.body;
+  // console.log(req.body);
 
-  console.log(id, currentScene);
+  const projectName = "test";
+  const { id, gameProject } = req.body;
+
+  // console.log(id, gameProject);
 
   if (login) {
-    const doc = await Project.findById(id);
+    const doc = await GameProject.findById(id);
 
-    const newScene = currentScene;
-    const update = { currentScene: newScene };
+    // console.log(doc);
+
+    // const newScene = currentScene;
+    const update = {
+      scene: gameProject.scene,
+      scripts: gameProject.scripts,
+      name: gameProject.name,
+    };
 
     await doc.updateOne(update);
     console.log("updated");

@@ -18,7 +18,7 @@ export class ProjectEditorComponent implements OnInit {
   EngineInstance: MainEngine;
   Controller: EngineUIController;
 
-  gameProject: GameProject;
+  gameProject: GameProject = new GameProject();
 
   @ViewChild('gameCanvas') canvas: ElementRef;
 
@@ -33,18 +33,23 @@ export class ProjectEditorComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.projectService.GetProject(this.id).subscribe((data) => {
       this.gameProject = data;
-      console.log(this.gameProject);
+      // console.log(this.gameProject);
       this.ParseSceneData(data);
       this.Controller = new EngineUIController(this.gameProject);
     });
   }
 
   ParseSceneData(data) {
-    let rawDataScene = data;
+    let rawDataGameProject = data;
 
-    let sceneData = new Scene(rawDataScene.name);
+    let sceneData = new Scene(rawDataGameProject.name);
+
+    if (rawDataGameProject.scene.children != undefined) {
+      rawDataGameProject.scene.children.forEach((element) => {
+        sceneData.AddChild(element);
+      });
+    }
     this.gameProject.scene = sceneData;
-    console.log(this.gameProject);
   }
 
   ngAfterViewInit(): void {
@@ -59,7 +64,7 @@ export class ProjectEditorComponent implements OnInit {
     this.projectService
       .SaveProject({
         id: this.id,
-        currentScene: this.EngineInstance.currentScene,
+        gameProject: this.gameProject,
       })
       .subscribe((data) => {
         console.log(data);
