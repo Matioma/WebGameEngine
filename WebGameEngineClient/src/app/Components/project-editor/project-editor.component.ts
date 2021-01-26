@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MainEngine } from '../../Engine/MainEngine';
 import { EngineUIController } from '../../Engine/Core/EngineUIController';
 import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
+import { GameProject } from 'src/app/Engine/Core/Core';
 
 @Component({
   selector: 'app-project-editor',
@@ -18,27 +19,30 @@ export class ProjectEditorComponent implements OnInit {
   EngineInstance: MainEngine;
   Controller: EngineUIController;
 
+  gameProject: GameProject;
+
   @ViewChild('gameCanvas') canvas: ElementRef;
 
   constructor(
     private auth: AuthService,
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService
-  ) {}
+  ) {
+    this.gameProject = new GameProject();
+  }
 
   ngOnInit(): void {
     this.EngineInstance = new MainEngine();
     this.Controller = new EngineUIController(this.EngineInstance);
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-
     this.projectService.GetProject(this.id).subscribe((data) => {
-      //this.EngineInstance.currentScene = data.result.currentScene;
-      console.log(data);
-      this.id = data.result._id;
-      this.projectName = data.result.projectName;
-
-      // console.log(data.result);
+      // console.log(data);
+      this.gameProject = data;
+      // this.EngineInstance.currentScene = data.project.currentScene;
+      // this.ParseData(data.project);
+      // this.id = data.project._id;
+      // this.projectName = data.project.projectName;
     });
   }
 
@@ -59,5 +63,13 @@ export class ProjectEditorComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  ParseData(Project) {
+    //console.log(Project.currentScene);
+
+    Project.currentScene.children.forEach((element) => {
+      console.log(element.name);
+    });
   }
 }

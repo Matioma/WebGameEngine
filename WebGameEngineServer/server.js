@@ -7,7 +7,8 @@ mongoose.Promise = Promise;
 
 const User = require("./Schemas/user");
 const ProjectTest = require("./Schemas/demoProject");
-const { Project, Scene } = require("./Schemas/Project");
+// const Project = require("./Schemas/Project");
+const { GameProject } = require("./Schemas/GameProject");
 
 const app = express();
 const port = 3000;
@@ -96,42 +97,29 @@ app.get("/api/loggedIn", (req, res) => {
 app.get("/api/Projects", async (req, res) => {
   sess = req.session;
 
-  let queryRes = await Project.find({ login: sess.login });
-  res.json(queryRes);
+  let result = await GameProject.find({ login: sess.login });
+  console.log(result);
+  res.json(result);
 });
 
 app.get("/api/Project/:id", async (req, res) => {
   sess = req.session;
   const { id } = req.body;
-  console.log(req.params.id);
 
-  let result = await Project.findById({ _id: req.params.id });
-
-  res.json({ success: true, result });
+  let project = await GameProject.findById({ _id: req.params.id });
+  res.json(project);
 });
 
 app.post("/api/Projects/add", (req, res) => {
-  const { projectName } = req.body;
-
-  //const projectName = "Awesome Project";
-
   sess = req.session;
   const login = sess.login;
 
-  if (Login) {
-    let defaultScene = {
-      behaviours: [],
-      children: [],
-      name: "Default Scene",
-    };
-    const project = new Project({
-      login,
-      projectName,
-      currentScene: defaultScene,
-    });
+  const { scripts, scene, name } = req.body;
 
+  if (Login) {
+    const project = new GameProject({ login, name, scene, scripts });
     project.save();
-    res.json({ success: true, message: project });
+    res.json({ success: true, message: `the project is ${project}` });
   } else {
     res.json({ success: false, message: "Cookie is Missing" });
   }
@@ -167,21 +155,11 @@ app.post("/api/Projects/save", async (req, res) => {
     const update = { currentScene: newScene };
 
     await doc.updateOne(update);
-
-    // Project.updateOne({ id }, { projectName: "AWESOME CHANGED PROJECCT" });
     console.log("updated");
-    // const project = new Project({
-    //   login,
-    //   projectName,
-    //   currentScene,
-    // });
-
-    //project.save();
-    //res.json({ success: true, message: ` save to the data base` });
-  } //{
-  //res.json({ success: false, message: "Cookie missing" });
-  //}
-  res.json({ success: true, message: ` save to the data base` });
+    res.json({ success: true, message: ` save to the data base` });
+  } else {
+    res.json({ success: false, message: "Cookie missing" });
+  }
 });
 
 app.listen(port, () => {

@@ -8,14 +8,17 @@ import { EngineUIController } from 'src/app/Engine/Core/EngineUIController';
   styleUrls: ['./hierarchy-view.component.css'],
 })
 export class HierarchyViewComponent implements OnInit {
-  @Input() projectData: Scene;
+  @Input() scene: Scene;
   @Input() controller: EngineUIController;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.scene);
+  }
 
   CreateGameObject() {
+    console.log('Create new Object');
     this.controller.CreateObject(new GameObject('AwesomeNewObject'));
   }
 }

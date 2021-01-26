@@ -4,7 +4,7 @@ export class Renderer {
   constructor() {}
   Initialize(canvas) {
     this.canvas = canvas;
-    console.log(this.canvas);
+    // console.log(this.canvas);
   }
 
   Draw(scene: GameObject) {

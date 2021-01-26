@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from '../../Models/Project';
 import { ProjectService } from '../../Sevices/ProjectService/project.service';
+import { GameProject } from '../../Engine/Core/Core';
 @Component({
   selector: 'app-projects-view',
   templateUrl: './projects-view.component.html',
@@ -22,15 +23,20 @@ export class ProjectsViewComponent implements OnInit {
     });
   }
 
-  AddProject(data: Project) {
-    this.projSer.AddProject(data).subscribe((data) => {
-      console.log(data);
+  AddProject(projectName: string) {
+    let newProject: GameProject = new GameProject();
+    newProject.name = projectName;
+    console.log(newProject);
+
+    this.projSer.AddProject(newProject).subscribe((response) => {
+      console.log(response);
       this.ngOnInit();
     });
   }
 
   CreateProject() {
-    this.AddProject({ projectName: this.input.nativeElement.value });
+    let projectName: string = this.input.nativeElement.value;
+    this.AddProject(projectName);
   }
   ToggleProject() {
     this.shouldShow = !this.shouldShow;

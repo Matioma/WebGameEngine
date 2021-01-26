@@ -7,17 +7,6 @@ export class MainEngine {
 
   constructor() {
     this.Run();
-
-    let obj: GameObject = new GameObject('Cool Stuff');
-
-    this.currentScene.AddChild(obj);
-    obj = new GameObject('Cool Stuff 2');
-
-    this.currentScene.AddChild(obj);
-    obj = new GameObject('Cool Stuff 4');
-    this.currentScene.AddChild(obj);
-    obj = new GameObject('Cool Stuff 5');
-    this.currentScene.AddChild(obj);
   }
   InitializeRenderer(canvas) {
     this.renderer.Initialize(canvas);

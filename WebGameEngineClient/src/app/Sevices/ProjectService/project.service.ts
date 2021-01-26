@@ -4,6 +4,20 @@ import { MainEngine } from '../../Engine/MainEngine';
 
 import { Project } from '../../Models/Project';
 import { Scene } from 'src/app/Engine/Core/Core';
+
+import { GameProject } from '../../Engine/Core/Core';
+
+type projectData = {
+  login: String;
+  projectName: String;
+  _id: String;
+  currentScene: Scene;
+};
+interface projectResponse {
+  success: boolean;
+  project: projectData;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -14,8 +28,8 @@ export class ProjectService {
     return this.http.get<MainEngine[]>('api/Projects');
   }
 
-  AddProject(data: Project) {
-    return this.http.post('api/Projects/add', data);
+  AddProject(project: GameProject) {
+    return this.http.post('api/Projects/add', project);
   }
 
   DeleteProject(data: Project) {
@@ -27,8 +41,6 @@ export class ProjectService {
   }
 
   GetProject(projectId) {
-    // console.log(id, 'sent');//
-    // let id = { id: projectId };
-    return this.http.get(`api/Project/${projectId}`);
+    return this.http.get<GameProject>(`api/Project/${projectId}`);
   }
 }
