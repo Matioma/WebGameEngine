@@ -47,7 +47,6 @@ export class GameProject implements projectData {
         }
       }
     }`;
-
     this.scripts.demo = `()=>{ 
       return class Test{
         Run(){console.log('Run'))}
@@ -78,10 +77,6 @@ export class GameObject implements dynamicObject {
       component.update();
     });
     console.log('gameObject here');
-    // if (this.children)
-    //   this.children.forEach((child) => {
-    //     child.update();
-    //   });
   }
 
   AddChild(newObject: GameObject) {
@@ -111,6 +106,9 @@ export class Scene extends GameObject {
 
 export class ProjectModel {
   project: GameProject;
+
+  selectedObject: GameObject;
+
   constructor(project: GameProject) {
     this.project = project;
   }

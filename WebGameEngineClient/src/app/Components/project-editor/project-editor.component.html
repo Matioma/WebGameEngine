@@ -12,10 +12,12 @@
     <canvas #gameCanvas></canvas>
   </section>
   <section class="Hierarchy">
-    <app-hierarchy-view [projectModel]=EngineInstance.projectModel></app-hierarchy-view>
+    <app-hierarchy-view *ngIf="EngineInstance" [projectModel]=EngineInstance.projectModel>
+    </app-hierarchy-view>
   </section>
   <section class="inspector">
-    <app-inspector-view></app-inspector-view>
+    <app-inspector-view *ngIf="EngineInstance" [selectedObject]=EngineInstance.projectModel.selectedObject>
+    </app-inspector-view>
   </section>
   <section class="FilesView">
     Files

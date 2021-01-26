@@ -27,7 +27,8 @@ export class EditorController implements UIActions {
   }
 
   SelectObject(gameObject: GameObject) {
-    console.log(gameObject);
+    this.projectModel.selectedObject = gameObject;
+    // console.log(gameObject);
   }
 
   CreateObject(gameObject: GameObject) {
