@@ -1,5 +1,5 @@
 import { MainEngine } from '../MainEngine';
-import { GameObject } from './Core';
+import { GameObject, GameProject } from './Core';
 
 interface UIActions {
   SelectObject(gameObject: GameObject);
@@ -7,14 +7,15 @@ interface UIActions {
 }
 
 export class EngineUIController implements UIActions {
-  engine: MainEngine;
+  gameProject: GameProject;
 
-  constructor(engine: MainEngine) {
-    this.engine = engine;
+  constructor(engine: GameProject) {
+    this.gameProject = engine;
   }
 
   SelectObject(gameObject: GameObject) {}
+
   CreateObject(gameObject: GameObject) {
-    this.engine.currentScene.AddChild(gameObject);
+    this.gameProject.scene.AddChild(new GameObject('AWESOME'));
   }
 }

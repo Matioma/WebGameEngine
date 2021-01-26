@@ -14,7 +14,7 @@ export class HierarchyViewComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.scene);
+    // console.log(this.scene);
   }
 
   CreateGameObject() {

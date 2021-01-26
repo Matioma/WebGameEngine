@@ -17,7 +17,7 @@ export class ProjectComponent implements OnInit {
   // @ViewChild('projInput') input;
   constructor(private projService: ProjectService, private router: Router) {
     //this.projectData.projectName = 'Something';
-    console.log();
+    // console.log();
   }
 
   onProjectUpdated(message: Object) {
@@ -25,7 +25,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.projectData.projectName, 'Vakye');
+    // console.log(this.projectData.projectName, 'Vakye');
     //this.projectData.projectName = 'Something';
   }
   Edit() {}

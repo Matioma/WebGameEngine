@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from 'src/app/Sevices/auth.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { MainEngine } from '../../Engine/MainEngine';
 import { EngineUIController } from '../../Engine/Core/EngineUIController';
 import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
-import { GameProject } from 'src/app/Engine/Core/Core';
+import { GameObject, GameProject, Scene } from 'src/app/Engine/Core/Core';
 
 @Component({
   selector: 'app-project-editor',
@@ -14,7 +13,7 @@ import { GameProject } from 'src/app/Engine/Core/Core';
 })
 export class ProjectEditorComponent implements OnInit {
   id: String;
-  projectName: String;
+  // projectName: String;
 
   EngineInstance: MainEngine;
   Controller: EngineUIController;
@@ -24,26 +23,28 @@ export class ProjectEditorComponent implements OnInit {
   @ViewChild('gameCanvas') canvas: ElementRef;
 
   constructor(
-    private auth: AuthService,
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService
-  ) {
-    this.gameProject = new GameProject();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.EngineInstance = new MainEngine();
-    this.Controller = new EngineUIController(this.EngineInstance);
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.projectService.GetProject(this.id).subscribe((data) => {
-      // console.log(data);
       this.gameProject = data;
-      // this.EngineInstance.currentScene = data.project.currentScene;
-      // this.ParseData(data.project);
-      // this.id = data.project._id;
-      // this.projectName = data.project.projectName;
+      console.log(this.gameProject);
+      this.ParseSceneData(data);
+      this.Controller = new EngineUIController(this.gameProject);
     });
+  }
+
+  ParseSceneData(data) {
+    let rawDataScene = data;
+
+    let sceneData = new Scene(rawDataScene.name);
+    this.gameProject.scene = sceneData;
+    console.log(this.gameProject);
   }
 
   ngAfterViewInit(): void {
