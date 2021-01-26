@@ -16,6 +16,7 @@ import { DashboardGuard } from './Guards/dashboard.guard';
 import { ProjectComponent } from './Components/project/project.component';
 import { ProjectEditorComponent } from './Components/project-editor/project-editor.component';
 import { HierarchyViewComponent } from './Components/hierarchy-view/hierarchy-view.component';
+import { HierarchyElementComponent } from './Components/hierarchy-element/hierarchy-element.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HierarchyViewComponent } from './Components/hierarchy-view/hierarchy-vi
     ProjectsViewComponent,
     ProjectEditorComponent,
     HierarchyViewComponent,
+    HierarchyElementComponent,
   ],
   imports: [
     BrowserModule,

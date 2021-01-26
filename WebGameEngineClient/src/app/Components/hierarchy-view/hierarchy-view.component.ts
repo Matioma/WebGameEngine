@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameObject, Scene } from 'src/app/Engine/Core/Core';
-import { EngineUIController } from 'src/app/Engine/Core/EngineUIController';
+import {
+  EditorController,
+  EngineUIController,
+} from 'src/app/Engine/Core/EngineUIController';
 
 @Component({
   selector: 'app-hierarchy-view',
@@ -20,5 +23,11 @@ export class HierarchyViewComponent implements OnInit {
   CreateGameObject() {
     console.log('Create new Object');
     this.controller.CreateObject(new GameObject('AwesomeNewObject'));
+  }
+
+  ChildSelected($event) {
+    console.log($event);
+
+    console.log(EditorController.getInstance().id);
   }
 }

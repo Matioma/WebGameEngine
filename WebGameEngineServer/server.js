@@ -156,10 +156,12 @@ app.post("/api/Projects/save", async (req, res) => {
     // console.log(doc);
 
     // const newScene = currentScene;
+
+    // console.log(gameProject.name);
     const update = {
       scene: gameProject.scene,
       scripts: gameProject.scripts,
-      name: gameProject.name,
+      // name: gameProject.name,
     };
 
     await doc.updateOne(update);

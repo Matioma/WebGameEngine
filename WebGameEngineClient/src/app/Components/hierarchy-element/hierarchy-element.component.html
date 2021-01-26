@@ -1,0 +1,6 @@
+<section class Container>
+  <button (click)="onClick()">{{object.name}}</button>
+  <li *ngFor="let child of object.children">
+    <app-hierarchy-element [object]=child></app-hierarchy-element>
+  </li>
+</section>

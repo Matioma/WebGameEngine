@@ -39,42 +39,35 @@ export class GameProject implements projectData {
     this.scene = new Scene('Default scene');
 
     this.scripts.Transform = `() => {
-      return class demo {
+      return class transform {
         constructor() {
-          console.log('Awesome');
+          console.log('Transform Class Created');
         }
-        Message(Message) {
-          console.log(Message);
-        }
-      };
-    };`;
-    this.scripts.Mesh = `() => {
-      return class mesh {
-        constructor() {
-          console.log('Awesome');
-        }
-        Message(Message) {
-          console.log(Message);
-        }
-      };
-    };`;
+        update(){
 
-    // let demo = eval(this.scripts.Transform)();
-    //console.log(demo());
-    // let t: any = new demo();
+        }
+      }
+    }`;
 
-    //let t = new demo();
-    // console.log(t);
-    // t.Message('AWESOME');
-    // let testClass = this.scripts.Transform();
-    // let demo = new testClass();
-    // demo.Message('CoOOL');
-    // console.log(demo.Message());
+    this.scripts.demo = `()=>{ 
+      return class Test{
+        Run(){console.log('Run'))}
+      }
+    }`;
+  }
+
+  CreateComponent(name: string, functionDefinition: string) {
+    if (this.scripts[name]) {
+      console.error(`The component ${name} was already defined in the project`);
+      return;
+    }
+    this.scripts[name] = functionDefinition;
   }
 }
 
 export class GameObject implements dynamicObject {
-  behaviours: Behaviour[] = [];
+  componentsNames: String[] = [];
+  private behaviours: any[] = [];
   children: GameObject[] = [];
   name: String = '';
 
@@ -86,16 +79,25 @@ export class GameObject implements dynamicObject {
       component.update();
     });
     console.log('gameObject here');
-    this.children.forEach((child) => {
-      child.update();
-    });
+    // if (this.children)
+    //   this.children.forEach((child) => {
+    //     child.update();
+    //   });
   }
 
   AddChild(newObject: GameObject) {
     this.children.push(newObject);
   }
-  AddBehaviour(newComponent: Behaviour) {
-    this.behaviours.push(newComponent);
+  AddBehaviour(componentName: string, gameProject: GameProject) {
+    if (!gameProject.scripts[componentName]) {
+      console.error(
+        `Script with this Component ${componentName} is not defined`
+      );
+    } else {
+      let newComponent = eval(gameProject.scripts[componentName])();
+      this.behaviours.push(new newComponent());
+      this.componentsNames.push(componentName);
+    }
   }
 }
 export class Scene extends GameObject {

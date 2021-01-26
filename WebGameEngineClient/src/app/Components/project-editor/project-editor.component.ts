@@ -5,6 +5,7 @@ import { MainEngine } from '../../Engine/MainEngine';
 import { EngineUIController } from '../../Engine/Core/EngineUIController';
 import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
 import { GameObject, GameProject, Scene } from 'src/app/Engine/Core/Core';
+import { EditorController } from '../../Engine/Core/EngineUIController';
 
 @Component({
   selector: 'app-project-editor',
@@ -14,6 +15,8 @@ import { GameObject, GameProject, Scene } from 'src/app/Engine/Core/Core';
 export class ProjectEditorComponent implements OnInit {
   id: String;
   // projectName: String;
+
+  name: String = 'UNamed';
 
   EngineInstance: MainEngine;
   Controller: EngineUIController;
@@ -25,21 +28,25 @@ export class ProjectEditorComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService
-  ) {}
+  ) {
+    EditorController.getInstance().id = 10;
+  }
 
   ngOnInit(): void {
-    this.EngineInstance = new MainEngine();
-
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.projectService.GetProject(this.id).subscribe((data) => {
       this.gameProject = data;
-      // console.log(this.gameProject);
-      this.ParseSceneData(data);
+      this.name = data.name;
+      this.ParseData(data);
       this.Controller = new EngineUIController(this.gameProject);
+
+      this.EngineInstance = new MainEngine(this.gameProject);
+      console.log(this.EngineInstance);
+      this.Play();
     });
   }
 
-  ParseSceneData(data) {
+  ParseData(data) {
     let rawDataGameProject = data;
 
     let sceneData = new Scene(rawDataGameProject.name);
@@ -49,11 +56,27 @@ export class ProjectEditorComponent implements OnInit {
         sceneData.AddChild(element);
       });
     }
+
+    this.gameProject = new GameProject();
     this.gameProject.scene = sceneData;
+
+    this.gameProject.CreateComponent(
+      'Draw',
+      `()=>{ return class draw{
+          constructor(){
+             console.log("Draw created");
+          } 
+          update(){
+            console.log('Draw being Updated');
+          }
+        }
+      }`
+    );
+    this.gameProject.scene.AddBehaviour('Draw', this.gameProject);
   }
 
   ngAfterViewInit(): void {
-    this.EngineInstance.InitializeRenderer(this.canvas);
+    //this.EngineInstance.InitializeRenderer(this.canvas);
   }
 
   Play() {
@@ -69,13 +92,5 @@ export class ProjectEditorComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
-  }
-
-  ParseData(Project) {
-    //console.log(Project.currentScene);
-
-    Project.currentScene.children.forEach((element) => {
-      console.log(element.name);
-    });
   }
 }

@@ -1,12 +1,13 @@
-import { GameObject, Scene } from './Core/Core';
+import { GameObject, GameProject, Scene } from './Core/Core';
 import { Renderer } from './Renderer/Renderer';
 
 export class MainEngine {
   renderer: Renderer = new Renderer();
-  currentScene: Scene = new Scene('Scene1');
+  project: GameProject;
 
-  constructor() {
-    this.Run();
+  constructor(project: GameProject) {
+    this.project = project;
+    // this.Run();
   }
   InitializeRenderer(canvas) {
     this.renderer.Initialize(canvas);
@@ -16,8 +17,13 @@ export class MainEngine {
     this.Loop();
   }
   Loop = () => {
-    //this.curentScene.update();
-    //this.renderer.Draw(this.curentScene);
+    if (this.project == undefined) {
+      console.error('project was not initilized');
+      return;
+    }
+    if (this.project.scene) {
+    }
+
     requestAnimationFrame(this.Loop);
   };
 }
