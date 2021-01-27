@@ -49,7 +49,7 @@ export class GameProject implements projectData {
     }`;
     this.scripts.demo = `()=>{ 
       return class Test{
-        Run(){console.log('Run'))}
+        Run(){console.log('Run')}
       }
     }`;
   }
@@ -88,7 +88,29 @@ export class GameObject implements dynamicObject {
         `Script with this Component ${componentName} is not defined`
       );
     } else {
+      if (this.componentsNames.includes(componentName)) {
+        console.warn(
+          `component ${componentName} already attached to the gameObject`
+        );
+      }
+
+      try {
+        eval(gameProject.scripts[componentName])();
+      } catch (e) {
+        if (e instanceof SyntaxError) {
+          console.error(
+            e.message +
+              ` \n Wrong syntax in component definition  when adding "${componentName}" component to ${this.name} gameobject`
+          );
+          console.error(
+            `script deffinition was \n ${gameProject.scripts[componentName]}`
+          );
+        }
+        return;
+      }
+
       let newComponent = eval(gameProject.scripts[componentName])();
+
       this.behaviours.push(new newComponent());
       this.componentsNames.push(componentName);
     }
