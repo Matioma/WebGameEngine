@@ -10,11 +10,22 @@ import { EditorController } from 'src/app/Engine/Core/UIController';
 export class HierarchyElementComponent implements OnInit {
   @Input() object: GameObject;
 
+  editMode: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onClick() {
+    console.log('Select');
     EditorController.getInstance().SelectObject(this.object);
+  }
+
+  editName() {
+    //console.log('DoubleClicked');
+    this.editMode = true;
+  }
+  confirmChange() {
+    this.editMode = false;
   }
 }
