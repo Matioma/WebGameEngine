@@ -85,7 +85,7 @@ export class GameObject implements dynamicObject {
   AddChild(newObject: GameObject) {
     this.children.push(newObject);
   }
-  AddBehaviour(newComponent: string, gameProject: GameProject) {
+  AddBehaviour(newComponent: string, gameProject: GameProject): any {
     if (!gameProject.scripts[newComponent]) {
       console.error(`Script ${newComponent}   is not defined`);
     } else {
@@ -118,9 +118,7 @@ export class GameObject implements dynamicObject {
       newBehavior.componentName = newComponent;
 
       this.behaviours.push(newBehavior);
-      //this.componentsNames.push(newComponent);
-
-      console.log(this);
+      return newBehavior;
     }
   }
 }

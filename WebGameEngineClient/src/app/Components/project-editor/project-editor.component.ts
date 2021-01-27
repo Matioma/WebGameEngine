@@ -76,7 +76,16 @@ export class ProjectEditorComponent implements OnInit {
         //Adding all behavriours
         element.behaviours.forEach((behaviour) => {
           console.log(behaviour, 'weird');
-          object.AddBehaviour(behaviour.componentName, gameProject);
+
+          let behaviourObject = object.AddBehaviour(
+            behaviour.componentName,
+            gameProject
+          );
+
+          for (const property in behaviour) {
+            behaviourObject[property] = behaviour[property];
+            // console.log(`${property}: ${behaviour[property]}`);
+          }
         });
         //Adding parsed Object
         gameProject.scene.AddChild(object);
