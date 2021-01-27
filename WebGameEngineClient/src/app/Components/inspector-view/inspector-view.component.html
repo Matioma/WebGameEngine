@@ -1,10 +1,21 @@
-<p *ngIf="selectedObject">{{selectedObject.name}}</p>
+<section *ngIf="selectedObject">
+  <p>{{selectedObject.name}}</p>
 
-<section *ngIf="selectedObject" class="newComponents">
-  <button (click)="ShowComponents()">Add Component</button>
 
-  <select *ngIf="showDropDown" name="Components" (change)="selectComponent($event)">
-    <option [ngValue]="null">Select Component</option>
-    <option *ngFor="let file of keys" [ngValue]=file> {{file}}</option>
-  </select>
+  <section class="components">
+    <!-- //{{this.selectedObject.behaviours}} -->
+    <!-- {{selectedObject.behaviors[0]}} -->
+    <li *ngFor="let component of selectedObject.behaviours">{{component.componentName}}</li>
+  </section>
+
+
+
+  <section *ngIf="selectedObject" class="newComponents">
+    <button (click)="ShowComponents()">Add Component</button>
+
+    <select *ngIf="showDropDown" name="Components" (change)="selectComponent($event)">
+      <option [ngValue]="null">Select Component</option>
+      <option *ngFor="let file of keys" [ngValue]=file> {{file}}</option>
+    </select>
+  </section>
 </section>

@@ -87,9 +87,7 @@ export class GameObject implements dynamicObject {
   }
   AddBehaviour(newComponent: string, gameProject: GameProject) {
     if (!gameProject.scripts[newComponent]) {
-      console.error(
-        `Script with this Component ${newComponent} is not defined`
-      );
+      console.error(`Script ${newComponent}   is not defined`);
     } else {
       //Warning of multiple component additions
       if (this.behaviours.includes({ componentName: newComponent })) {

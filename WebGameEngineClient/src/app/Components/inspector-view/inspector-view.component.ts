@@ -22,6 +22,7 @@ export class InspectorViewComponent implements OnInit {
       .scripts) {
       this.keys.push(componentName);
     }
+
     // if (this.selectedObject == undefined) {
     // this.selectedObject.name = '';
     // }
