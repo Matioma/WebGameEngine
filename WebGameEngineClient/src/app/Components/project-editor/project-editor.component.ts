@@ -32,7 +32,7 @@ export class ProjectEditorComponent implements OnInit {
 
       this.EngineInstance = new MainEngine(projectParsed);
 
-      console.log(this.EngineInstance);
+      // console.log(this.EngineInstance);
       this.EngineInstance.Run();
     });
   }
@@ -42,47 +42,56 @@ export class ProjectEditorComponent implements OnInit {
 
     let sceneData = new Scene(rawDataGameProject.name);
     //ParseChildren
-    if (rawDataGameProject.scene.children != undefined) {
-      rawDataGameProject.scene.children.forEach((element) => {
-        sceneData.AddChild(element);
-      });
-    }
 
-    if (rawDataGameProject.scene.children != undefined) {
-      rawDataGameProject.scene.children.forEach((element) => {
-        sceneData.AddChild(element);
-      });
-    }
+    // if (rawDataGameProject.scene.children != undefined) {
+    //   rawDataGameProject.scene.children.forEach((element) => {
+    //     sceneData.AddChild(element);
+    //   });
+    // }
 
     let gameProject: GameProject = new GameProject();
     gameProject.scene = sceneData;
 
-    gameProject.CreateComponent(
-      'Draw',
-      `()=>{ return class draw{
-          constructor(){
-             console.log("Draw created");
-          } 
-          update(){
-            console.log('Draw being Updated');
-          }
-        }
-      }`
-    );
-    gameProject.scene.AddBehaviour('Draw', gameProject);
+    // gameProject.CreateComponent(
+    //   'Draw',
+    //   `()=>{ return class draw{
+    //       constructor(){
+    //          console.log("Draw created");
+    //       }
+    //       update(){
+    //         console.log('Draw being Updated');
+    //       }
+    //     }
+    //   }`
+    // );
+
+    //console.log(rawDataGameProject);
+
+    if (rawDataGameProject.scene.children != undefined) {
+      //console.log(rawDataGameProject.scene);
+
+      rawDataGameProject.scene.children.forEach((element) => {
+        let object: GameObject = new GameObject(element.name);
+
+        //Adding all behavriours
+        element.behaviours.forEach((behaviour) => {
+          console.log(behaviour, 'weird');
+          object.AddBehaviour(behaviour.componentName, gameProject);
+        });
+        //Adding parsed Object
+        gameProject.scene.AddChild(object);
+      });
+    }
     return gameProject;
   }
 
-  ngAfterViewInit(): void {
-    //this.EngineInstance.InitializeRenderer(this.canvas);
-  }
+  ngAfterViewInit(): void {}
 
   Play() {
     this.EngineInstance.Run();
   }
 
   Save() {
-    // EditorController.getInstance().Save();
     this.projectService
       .SaveProject({
         id: this.id,

@@ -68,7 +68,7 @@ export class GameProject implements projectData {
 
 export class GameObject implements dynamicObject {
   // componentsNames: String[] = [];
-  private behaviours: any[] = [];
+  behaviours: any[] = [];
   children: GameObject[] = [];
   name: String = '';
 
