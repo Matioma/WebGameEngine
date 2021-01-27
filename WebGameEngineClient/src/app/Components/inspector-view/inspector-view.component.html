@@ -3,9 +3,9 @@
 
 
   <section class="components">
-    <!-- //{{this.selectedObject.behaviours}} -->
-    <!-- {{selectedObject.behaviors[0]}} -->
-    <li *ngFor="let component of selectedObject.behaviours">{{component.componentName}}</li>
+    <section *ngFor="let component of selectedObject.behaviours">
+      <app-behaviour-view [component]=component></app-behaviour-view>
+    </section>
   </section>
 
 
