@@ -29,5 +29,5 @@
 
 <section *ngIf="EngineInstance && EngineInstance.editorController && EngineInstance.editorController.selectedScriptKey"
   class="CodeEditor">
-  <app-text-editor></app-text-editor>
+  <app-text-editor [projectData]=EngineInstance.projectModel></app-text-editor>
 </section>

@@ -29,12 +29,9 @@ export class ProjectEditorComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.projectService.GetProject(this.id).subscribe((data) => {
       this.name = data.name;
-
       let projectParsed: GameProject = this.ParseData(data);
 
       this.EngineInstance = new MainEngine(projectParsed);
-
-      // console.log(this.EngineInstance);
       this.EngineInstance.Run();
     });
   }

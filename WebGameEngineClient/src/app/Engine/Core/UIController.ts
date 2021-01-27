@@ -11,7 +11,7 @@ export class EditorController implements UIActions {
   private static instance: EditorController;
 
   private projectModel: ProjectModel;
-  private selectedScriptKey: String;
+  selectedScriptKey: string;
 
   constructor(gameProject: ProjectModel) {
     if (EditorController.instance) {
