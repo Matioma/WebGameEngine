@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectModel } from 'src/app/Engine/Core/Core';
+import { EditorController } from 'src/app/Engine/Core/UIController';
 
 @Component({
   selector: 'app-files-view',
@@ -12,7 +13,7 @@ export class FilesViewComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openFile(script) {
-    console.log(script);
+  openFile(scriptKey) {
+    EditorController.getInstance().OpenScript(scriptKey);
   }
 }

@@ -1,29 +1,33 @@
-<header>
-  <nav>
-    <a routerLink="/dashboard" class="button">Back</a>
-    <button (click)="Save()">Save</button>
-  </nav>
-  <p>{{name}}</p>
-</header>
+<section>
+  <header>
+    <nav>
+      <a routerLink="/dashboard" class="button">Back</a>
+      <button (click)="Save()">Save</button>
+    </nav>
+    <p>{{name}}</p>
+  </header>
 
 
-<main class="ProjectUI">
-  <section class="GameView">
-    <canvas #gameCanvas></canvas>
-  </section>
-  <section class="Hierarchy">
-    <app-hierarchy-view *ngIf="EngineInstance" [projectModel]=EngineInstance.projectModel>
-    </app-hierarchy-view>
-  </section>
-  <section class="inspector">
-    <app-inspector-view *ngIf="EngineInstance" [selectedObject]=EngineInstance.projectModel.selectedObject>
-    </app-inspector-view>
-  </section>
-  <section class="FilesView">
-    <app-files-view *ngIf="EngineInstance" [projectModel]=EngineInstance.projectModel>
-    </app-files-view>
-  </section>
-</main>
+  <main class="ProjectUI">
+    <section class="GameView">
+      <canvas #gameCanvas></canvas>
+    </section>
+    <section class="Hierarchy">
+      <app-hierarchy-view *ngIf="EngineInstance" [projectModel]=EngineInstance.projectModel>
+      </app-hierarchy-view>
+    </section>
+    <section class="inspector">
+      <app-inspector-view *ngIf="EngineInstance" [selectedObject]=EngineInstance.projectModel.selectedObject>
+      </app-inspector-view>
+    </section>
+    <section class="FilesView">
+      <app-files-view *ngIf="EngineInstance" [projectModel]=EngineInstance.projectModel>
+      </app-files-view>
+    </section>
+  </main>
+</section>
 
-
-<!-- <button (click)="Demo()">TEst</button> -->
+<section *ngIf="EngineInstance && EngineInstance.editorController && EngineInstance.editorController.selectedScriptKey"
+  class="CodeEditor">
+  <app-text-editor></app-text-editor>
+</section>

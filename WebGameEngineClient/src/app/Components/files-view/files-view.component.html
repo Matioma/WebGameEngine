@@ -3,7 +3,7 @@
     <p>File Explorer</p>
   </header>
   <main>
-    <figure *ngFor="let item of projectModel.project.scripts | keyvalue" (dblclick)="openFile(item)">
+    <figure *ngFor="let item of projectModel.project.scripts | keyvalue" (dblclick)="openFile(item.key)">
       <img src="assets/Images/file.svg">
       <figcaption>{{item.key}}</figcaption>
     </figure>

@@ -11,6 +11,7 @@ export class EditorController implements UIActions {
   private static instance: EditorController;
 
   private projectModel: ProjectModel;
+  private selectedScriptKey: String;
 
   constructor(gameProject: ProjectModel) {
     if (EditorController.instance) {
@@ -33,5 +34,17 @@ export class EditorController implements UIActions {
 
   CreateObject(gameObject: GameObject) {
     this.projectModel.project.scene.AddChild(new GameObject('AWESOME'));
+  }
+
+  OpenScript(key) {
+    this.selectedScriptKey = key;
+    console.log(key);
+  }
+
+  SaveFile() {
+    this.selectedScriptKey = null;
+  }
+  CloseFile() {
+    this.selectedScriptKey = null;
   }
 }

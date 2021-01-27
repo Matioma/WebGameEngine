@@ -1,0 +1,33 @@
+/* section {
+    position: absolute;
+    top: 0;
+    left: 0;
+  } */
+
+* {
+  box-sizing: border-box;
+}
+.textEditor {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textEditor > header {
+  width: 100%;
+  height: 10vh;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: space-between;
+}
+.textEditor > main {
+  width: 100%;
+  height: 100%;
+}
+
+.textEditor textarea {
+  width: 100%;
+  height: 100%;
+}

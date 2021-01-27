@@ -18,6 +18,8 @@ export class ProjectEditorComponent implements OnInit {
 
   @ViewChild('gameCanvas') canvas: ElementRef;
 
+  fileEditing: boolean = true;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private projectService: ProjectService

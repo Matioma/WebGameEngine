@@ -2,6 +2,10 @@ body {
   padding: 0px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .ProjectUI {
   width: 100%;
   display: flex;
@@ -39,3 +43,15 @@ canvas {
   border: 2px solid black;
   overflow-y: scroll;
 }
+
+.CodeEditor {
+  width: 95vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* .CodeEditor > * {
+  width: 100%;
+  height: 100%;
+} */
