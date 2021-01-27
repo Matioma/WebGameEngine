@@ -1,0 +1,11 @@
+<section>
+  <header>
+    <p>File Explorer</p>
+  </header>
+  <main>
+    <figure *ngFor="let item of projectModel.project.scripts | keyvalue" (dblclick)="openFile(item)">
+      <img src="assets/Images/file.svg">
+      <figcaption>{{item.key}}</figcaption>
+    </figure>
+  </main>
+</section>

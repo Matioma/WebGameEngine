@@ -15,22 +15,27 @@ canvas {
 
 .GameView {
   width: 50%;
-  height: 60vh;
+  height: 50vh;
   background-color: black;
 }
 
 .Hierarchy {
   width: 15%;
   background-color: gray;
+
+  overflow-y: scroll;
 }
 
 .inspector {
   width: 35%;
   background-color: green;
+  overflow-y: scroll;
 }
 
 .FilesView {
   width: 100%;
   height: 25vh;
-  background-color: greenyellow;
+  background-color: blanchedalmond;
+  border: 2px solid black;
+  overflow-y: scroll;
 }

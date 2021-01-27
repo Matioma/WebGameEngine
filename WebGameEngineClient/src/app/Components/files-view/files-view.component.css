@@ -1,0 +1,29 @@
+section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+section > main {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+figure {
+  width: 80px;
+  margin: 20px;
+  text-align: center;
+}
+img {
+  width: 100%;
+}
+
+figcaption {
+  width: 100%;
+}
+section > header {
+  display: flex;
+  margin: 20px 0 0 20px;
+  border-bottom: 2px solid black;
+}

@@ -20,6 +20,8 @@ import { HierarchyViewComponent } from './Components/hierarchy-view/hierarchy-vi
 import { HierarchyElementComponent } from './Components/hierarchy-element/hierarchy-element.component';
 import { InspectorViewComponent } from './Components/inspector-view/inspector-view.component';
 import { BehaviourViewComponent } from './Components/behaviour-view/behaviour-view.component';
+import { FilesViewComponent } from './Components/files-view/files-view.component';
+import { FileIconComponent } from './Components/file-icon/file-icon.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { BehaviourViewComponent } from './Components/behaviour-view/behaviour-vi
     HierarchyElementComponent,
     InspectorViewComponent,
     BehaviourViewComponent,
+    FilesViewComponent,
+    FileIconComponent,
   ],
   imports: [
     BrowserModule,

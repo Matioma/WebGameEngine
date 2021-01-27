@@ -20,7 +20,8 @@
     </app-inspector-view>
   </section>
   <section class="FilesView">
-    Files
+    <app-files-view *ngIf="EngineInstance" [projectModel]=EngineInstance.projectModel>
+    </app-files-view>
   </section>
 </main>
 
