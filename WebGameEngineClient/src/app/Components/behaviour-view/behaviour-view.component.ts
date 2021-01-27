@@ -29,4 +29,8 @@ export class BehaviourViewComponent implements OnInit {
       selectedObject.behaviours.splice(index, 1);
     }
   }
+  mychange(event, key) {
+    this.component[key] = event;
+    console.log(event, key);
+  }
 }
