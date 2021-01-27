@@ -41,8 +41,23 @@ export class EditorController implements UIActions {
     console.log(key);
   }
 
-  SaveFile() {
-    this.selectedScriptKey = null;
+  SaveFile(sourceCode: string) {
+    // console.log(sourceCode);
+    //let test = eval(sourceCode)();
+    let compileFailed: boolean = false;
+
+    try {
+      let t = eval(sourceCode)();
+    } catch (e) {
+      compileFailed = true;
+      console.error('Failed to compile Script', e);
+    }
+
+    if (!compileFailed) {
+      this.projectModel.project.scripts[this.selectedScriptKey] = sourceCode;
+      this.selectedScriptKey = null;
+      console.log(this.projectModel.project);
+    }
   }
   CloseFile() {
     this.selectedScriptKey = null;

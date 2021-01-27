@@ -37,24 +37,24 @@ export class GameProject implements projectData {
   constructor() {
     this.scene = new Scene('Default scene');
 
-    this.scripts.Transform = `() => {
-      return class transform {
-        constructor() {
-          console.log('Transform Class Created');
-        }
-        update(){
+    // this.scripts.Transform = `() => {
+    //   return class transform {
+    //     constructor() {
+    //       console.log('Transform Class Created');
+    //     }
+    //     update(){
 
-        }
-      }
-    }`;
-    this.scripts.demo = `()=>{ 
-      return class Test{
-        constructor(){
-          this.p =20;
-        }
-        Run(){console.log('Run')}
-      }
-    }`;
+    //     }
+    //   }
+    // }`;
+    // this.scripts.demo = `()=>{
+    //   return class Test{
+    //     constructor(){
+    //       this.p =20;
+    //     }
+    //     Run(){console.log('Run')}
+    //   }
+    // }`;
   }
 
   CreateComponent(name: string, functionDefinition: string) {

@@ -66,9 +66,13 @@ export class ProjectEditorComponent implements OnInit {
 
     //console.log(rawDataGameProject);
 
-    if (rawDataGameProject.scene.children != undefined) {
-      //console.log(rawDataGameProject.scene);
+    console.log(rawDataGameProject);
 
+    for (var key in rawDataGameProject.scripts) {
+      gameProject.scripts[key] = rawDataGameProject.scripts[key];
+    }
+
+    if (rawDataGameProject.scene.children != undefined) {
       rawDataGameProject.scene.children.forEach((element) => {
         let object: GameObject = new GameObject(element.name);
 
@@ -80,16 +84,16 @@ export class ProjectEditorComponent implements OnInit {
             behaviour.componentName,
             gameProject
           );
-
           for (const property in behaviour) {
             behaviourObject[property] = behaviour[property];
-            // console.log(`${property}: ${behaviour[property]}`);
           }
         });
-        //Adding parsed Object
         gameProject.scene.AddChild(object);
       });
     }
+
+    //Parse Scripts
+
     return gameProject;
   }
 

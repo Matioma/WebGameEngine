@@ -1,9 +1,9 @@
 <section class="textEditor">
   <header>
     <button class="button" (click)="CloseFile()">X</button>
-    <button class="button">Save</button>
+    <button class="button" (click)="SaveFile()">Save</button>
   </header>
   <main>
-    <textarea>{{GetScriptText()}}</textarea>
+    <textarea [(ngModel)]="message">{{message}}</textarea>
   </main>
 </section>

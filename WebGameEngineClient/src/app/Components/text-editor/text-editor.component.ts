@@ -9,12 +9,13 @@ import { EditorController } from 'src/app/Engine/Core/UIController';
 })
 export class TextEditorComponent implements OnInit {
   @Input() projectData: ProjectModel;
+  message: string;
 
   constructor() {}
 
-  ngOnInit(): void {}
-
-  SaveFile() {}
+  ngOnInit(): void {
+    this.message = this.GetScriptText();
+  }
 
   GetScriptText() {
     let key = EditorController.getInstance().selectedScriptKey;
@@ -22,7 +23,9 @@ export class TextEditorComponent implements OnInit {
   }
 
   CloseFile() {
-    console.log(this.projectData.project.scripts.demo);
     EditorController.getInstance().CloseFile();
+  }
+  SaveFile() {
+    EditorController.getInstance().SaveFile(this.message);
   }
 }
