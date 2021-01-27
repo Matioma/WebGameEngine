@@ -1,7 +1,7 @@
 <section class="behaviour-view">
   <header>
     <p>{{component.componentName}}</p>
-    <button>Delete</button>
+    <button (click)="RemoveCoponent()">Delete</button>
   </header>
   <main class="objectFields">
     <section *ngFor="let item of component | keyvalue | slice:1">

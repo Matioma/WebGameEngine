@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Behaviour } from 'src/app/Engine/Core/Core';
+import { Behaviour, GameObject } from 'src/app/Engine/Core/Core';
+import { EditorController } from 'src/app/Engine/Core/UIController';
+import { MainEngine } from 'src/app/Engine/MainEngine';
 
 @Component({
   selector: 'app-behaviour-view',
@@ -15,5 +17,16 @@ export class BehaviourViewComponent implements OnInit {
 
   objectKeys(obj) {
     return Object.keys(obj);
+  }
+
+  RemoveCoponent() {
+    let selectedObject: GameObject = MainEngine.GetInstance().projectModel
+      .selectedObject;
+
+    const index = selectedObject.behaviours.indexOf(this.component);
+    // console.log(index);
+    if (index > -1) {
+      selectedObject.behaviours.splice(index, 1);
+    }
   }
 }
