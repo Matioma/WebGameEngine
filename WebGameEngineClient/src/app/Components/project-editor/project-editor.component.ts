@@ -41,6 +41,13 @@ export class ProjectEditorComponent implements OnInit {
     let rawDataGameProject = data;
 
     let sceneData = new Scene(rawDataGameProject.name);
+    //ParseChildren
+    if (rawDataGameProject.scene.children != undefined) {
+      rawDataGameProject.scene.children.forEach((element) => {
+        sceneData.AddChild(element);
+      });
+    }
+
     if (rawDataGameProject.scene.children != undefined) {
       rawDataGameProject.scene.children.forEach((element) => {
         sceneData.AddChild(element);

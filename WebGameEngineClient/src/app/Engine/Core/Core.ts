@@ -49,6 +49,9 @@ export class GameProject implements projectData {
     }`;
     this.scripts.demo = `()=>{ 
       return class Test{
+        constructor(){
+          this.p =20;
+        }
         Run(){console.log('Run')}
       }
     }`;
@@ -64,7 +67,7 @@ export class GameProject implements projectData {
 }
 
 export class GameObject implements dynamicObject {
-  componentsNames: String[] = [];
+  // componentsNames: String[] = [];
   private behaviours: any[] = [];
   children: GameObject[] = [];
   name: String = '';
@@ -82,37 +85,44 @@ export class GameObject implements dynamicObject {
   AddChild(newObject: GameObject) {
     this.children.push(newObject);
   }
-  AddBehaviour(componentName: string, gameProject: GameProject) {
-    if (!gameProject.scripts[componentName]) {
+  AddBehaviour(newComponent: string, gameProject: GameProject) {
+    if (!gameProject.scripts[newComponent]) {
       console.error(
-        `Script with this Component ${componentName} is not defined`
+        `Script with this Component ${newComponent} is not defined`
       );
     } else {
-      if (this.componentsNames.includes(componentName)) {
+      //Warning of multiple component additions
+      if (this.behaviours.includes({ componentName: newComponent })) {
         console.warn(
-          `component ${componentName} already attached to the gameObject`
+          `component ${newComponent} already attached to the gameObject`
         );
       }
 
+      //Validate Script
       try {
-        eval(gameProject.scripts[componentName])();
+        eval(gameProject.scripts[newComponent])();
       } catch (e) {
         if (e instanceof SyntaxError) {
           console.error(
             e.message +
-              ` \n Wrong syntax in component definition  when adding "${componentName}" component to ${this.name} gameobject`
+              ` \n Wrong syntax in component definition  when adding "${newComponent}" component to ${this.name} gameobject`
           );
           console.error(
-            `script deffinition was \n ${gameProject.scripts[componentName]}`
+            `script deffinition was \n ${gameProject.scripts[newComponent]}`
           );
         }
         return;
       }
 
-      let newComponent = eval(gameProject.scripts[componentName])();
+      //Compile Script
+      let ComponentDefinition = eval(gameProject.scripts[newComponent])();
+      let newBehavior = new ComponentDefinition();
+      newBehavior.componentName = newComponent;
 
-      this.behaviours.push(new newComponent());
-      this.componentsNames.push(componentName);
+      this.behaviours.push(newBehavior);
+      //this.componentsNames.push(newComponent);
+
+      console.log(this);
     }
   }
 }
