@@ -102,10 +102,14 @@ app.get("/api/Projects", async (req, res) => {
 });
 
 app.get("/api/Project/:id", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.set({ "content-type": "application/json; charset=utf-8" });
+
   sess = req.session;
   const { id } = req.body;
 
   let project = await GameProject.findById({ _id: req.params.id });
+  //console.log("demo", project.scene.children[0]);
   res.json(project);
 });
 

@@ -28,6 +28,7 @@ export class ProjectEditorComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.projectService.GetProject(this.id).subscribe((data) => {
+      console.log(data);
       this.name = data.name;
       //let projectParsed: GameProject = this.ParseData(data);
 
@@ -44,6 +45,8 @@ export class ProjectEditorComponent implements OnInit {
   }
 
   Save() {
+    console.log(this.EngineInstance.projectModel.project);
+
     this.EngineInstance.projectModel.project.scene.children.forEach((child) => {
       child.behaviours.forEach((behaviour) => {
         delete behaviour['owner'];

@@ -53,6 +53,8 @@ export class MainEngine {
   }
 
   compileCode(projectData) {
+    // console.log(projectData);
+
     this.projectModel = new ProjectModel(this.ParseData(projectData));
     this.editorController = new EditorController(this.projectModel);
   }
@@ -78,20 +80,23 @@ export class MainEngine {
     if (rawDataGameProject.scene.children != undefined) {
       rawDataGameProject.scene.children.forEach((element) => {
         let object: GameObject = new GameObject(element.name);
-
         element.behaviours.forEach((behaviour) => {
-          let behaviourObject = object.AddBehaviour(
+          let newBehaviour = object.AddBehaviour(
             behaviour.componentName,
             gameProject
           );
-          for (const property in behaviourObject) {
-            behaviour[property] = behaviourObject[property];
+          for (const property in newBehaviour) {
+            if (behaviour[property]) {
+              newBehaviour[property] = behaviour[property];
+            }
+            //behaviour[property] = newBehaviour[property];
           }
         });
         gameProject.scene.AddChild(object);
       });
     }
 
+    console.log(gameProject);
     return gameProject;
   }
 
