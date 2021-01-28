@@ -6,7 +6,7 @@
 .behaviour-view {
   display: flex;
   flex-direction: column;
-  width: 98%;
+  width: 100%;
   background-color: blanchedalmond;
   padding: 5px;
   margin: 0 auto;

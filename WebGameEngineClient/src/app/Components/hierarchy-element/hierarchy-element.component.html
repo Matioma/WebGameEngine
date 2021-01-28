@@ -1,6 +1,5 @@
 <section class Container>
 
-
   <button class="hierarchyElement" *ngIf="!editMode" (dblclick)="editName()"
     (click)="onClick()">{{object.name}}</button>
   <input class="hierarchyElement" *ngIf="editMode" [(ngModel)]="object.name" (keyup.enter)="confirmChange()"

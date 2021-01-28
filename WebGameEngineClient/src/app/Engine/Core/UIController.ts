@@ -10,7 +10,7 @@ interface UIActions {
 export class EditorController implements UIActions {
   private static instance: EditorController;
 
-  private projectModel: ProjectModel;
+  projectModel: ProjectModel;
   selectedScriptKey: string;
 
   constructor(gameProject: ProjectModel) {
@@ -22,12 +22,17 @@ export class EditorController implements UIActions {
     this.projectModel = gameProject;
   }
 
-  set ProjectModel(projectModel: ProjectModel) {
-    this.projectModel = projectModel;
-  }
-
   Delete() {
     EditorController.instance = null;
+  }
+
+  RemoveObject(object: GameObject) {
+    let sceneObjects = this.projectModel.project.scene;
+    const index = sceneObjects.children.indexOf(object);
+    if (index > -1) {
+      sceneObjects.children.splice(index, 1);
+      this.projectModel.selectedObject = null;
+    }
   }
 
   static getInstance() {

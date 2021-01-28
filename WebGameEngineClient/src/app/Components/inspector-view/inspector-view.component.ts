@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameObject } from 'src/app/Engine/Core/Core';
+import { EditorController } from 'src/app/Engine/Core/UIController';
 import { MainEngine } from 'src/app/Engine/MainEngine';
 
 @Component({
@@ -30,5 +31,9 @@ export class InspectorViewComponent implements OnInit {
       $event.target.value,
       MainEngine.GetInstance().projectModel.project
     );
+  }
+
+  Delete() {
+    EditorController.getInstance().RemoveObject(this.selectedObject);
   }
 }

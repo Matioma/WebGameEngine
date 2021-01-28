@@ -74,16 +74,17 @@ export class MainEngine {
       rawDataGameProject.scene.children.forEach((element) => {
         let object: GameObject = new GameObject(element.name);
 
-        //Adding all behavriours
         element.behaviours.forEach((behaviour) => {
-          // console.log(behaviour, 'weird');
-
           let behaviourObject = object.AddBehaviour(
             behaviour.componentName,
             gameProject
           );
-          for (const property in behaviour) {
-            behaviourObject[property] = behaviour[property];
+          // for (const property in behaviour) {
+          //   behaviourObject[property] = behaviour[property];
+          // }
+
+          for (const property in behaviourObject) {
+            behaviour[property] = behaviourObject[property];
           }
         });
         gameProject.scene.AddChild(object);

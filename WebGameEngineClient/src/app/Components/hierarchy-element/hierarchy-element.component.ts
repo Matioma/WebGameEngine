@@ -29,4 +29,6 @@ export class HierarchyElementComponent implements OnInit {
   confirmChange() {
     this.editMode = false;
   }
+
+  Delete() {}
 }
