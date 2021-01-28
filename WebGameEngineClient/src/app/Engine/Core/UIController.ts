@@ -77,4 +77,26 @@ export class EditorController implements UIActions {
   CloseFile() {
     this.selectedScriptKey = null;
   }
+
+  CreateScript(name: string) {
+    let defaultClassDefinition = `
+      ()=>{
+        return class ${name}{
+          constructor(){
+            this.test ="tet";
+          }
+          update(){
+            console.log("Updating");
+          }
+          draw(){
+            console.log("Drawing");
+          }
+
+        }
+      }
+    `;
+    this.projectModel.project.CreateComponent(name, defaultClassDefinition);
+
+    this.SelectObject(this.projectModel.selectedObject);
+  }
 }

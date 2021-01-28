@@ -9,11 +9,23 @@ import { EditorController } from 'src/app/Engine/Core/UIController';
 })
 export class FilesViewComponent implements OnInit {
   @Input() projectModel: ProjectModel;
+
+  showForm: boolean = false;
+  fileName: string = '';
+
   constructor() {}
 
   ngOnInit(): void {}
 
   openFile(scriptKey) {
     EditorController.getInstance().OpenScript(scriptKey);
+  }
+
+  ToggleForm() {
+    this.showForm = !this.showForm;
+  }
+
+  CreateScript() {
+    EditorController.getInstance().CreateScript(this.fileName);
   }
 }

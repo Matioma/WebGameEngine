@@ -1,6 +1,18 @@
 <section>
   <header>
     <p>File Explorer</p>
+
+    <section class="fileCreation">
+      <section *ngIf="showForm">
+        <input [(ngModel)]=fileName>
+        <button class="confirm" (click)="CreateScript()">Confirm</button>
+        <button class="cancel" (click)="ToggleForm()">Cancel</button>
+      </section>
+      <button *ngIf="!showForm" (click)="ToggleForm()">Add Script</button>
+
+    </section>
+
+
   </header>
   <main>
     <figure *ngFor="let item of projectModel.project.scripts | keyvalue" (dblclick)="openFile(item.key)">

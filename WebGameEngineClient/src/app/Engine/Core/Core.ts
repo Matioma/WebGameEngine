@@ -62,6 +62,7 @@ export class GameProject implements projectData {
       console.error(`The component ${name} was already defined in the project`);
       return;
     }
+
     this.scripts[name] = functionDefinition;
   }
 }
