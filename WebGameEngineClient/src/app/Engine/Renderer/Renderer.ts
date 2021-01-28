@@ -93,6 +93,10 @@ export class Renderer {
     this.gl.depthFunc(this.gl.LEQUAL);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
   }
+  draw() {
+    const buffers = this.initBuffers(this.gl);
+    this.drawScene(this.gl, this.programInfo, buffers);
+  }
   drawScene(gl, programInfo, buffers) {
     // gl.clearColor(0.0, 0.0, 0.0, 1.0);
     // gl.clearDepth(1.0);

@@ -93,7 +93,7 @@ export class GameObject implements dynamicObject {
   }
   update() {
     this.behaviours.forEach((component) => {
-      component.update();
+      component.update(MainEngine.GetInstance().getDeltaTime());
       component.draw(Renderer.getInstance());
     });
   }

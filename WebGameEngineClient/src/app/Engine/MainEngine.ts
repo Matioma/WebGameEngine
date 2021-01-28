@@ -10,6 +10,9 @@ export class MainEngine {
   projectModel: ProjectModel;
   editorController: EditorController;
 
+  lastTime;
+  time;
+
   constructor(project: GameProject) {
     if (MainEngine.instance) {
       console.error('Main Engine Already initialized');
@@ -18,6 +21,8 @@ export class MainEngine {
     MainEngine.instance = this;
 
     this.compileCode(project);
+    this.time = new Date().getMilliseconds();
+    this.lastTime = this.time;
   }
 
   InitializeRenderer(canvas) {
@@ -25,6 +30,9 @@ export class MainEngine {
     this.renderer.Initialize(canvas);
   }
 
+  getDeltaTime() {
+    return (this.time - this.lastTime) / 100.0;
+  }
   Run() {
     this.Loop();
   }
@@ -33,7 +41,7 @@ export class MainEngine {
       console.error('project was not initilized');
       return;
     }
-
+    this.renderer.clearScreen(0, 0, 0);
     //UpdateScene
     this.projectModel.project.scene.children.forEach((element) => {
       element.update();
@@ -44,6 +52,8 @@ export class MainEngine {
     // });
 
     requestAnimationFrame(this.Loop);
+    this.lastTime = this.time;
+    this.time = new Date().getMilliseconds();
   };
 
   static GetInstance(): MainEngine {
