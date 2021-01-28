@@ -55,8 +55,6 @@ export class EditorController implements UIActions {
   }
 
   SaveFile(sourceCode: string) {
-    // console.log(sourceCode);
-    //let test = eval(sourceCode)();
     let compileFailed: boolean = false;
 
     try {

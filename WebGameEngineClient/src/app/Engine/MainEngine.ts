@@ -93,6 +93,5 @@ export class MainEngine {
   Delete() {
     MainEngine.instance = null;
     EditorController.getInstance().Delete();
-    console.log(MainEngine.instance);
   }
 }
