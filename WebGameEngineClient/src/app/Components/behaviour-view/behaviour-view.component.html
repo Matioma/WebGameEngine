@@ -4,9 +4,11 @@
     <button (click)="RemoveCoponent()">Delete</button>
   </header>
   <main class="objectFields">
-    <section *ngFor="let item of component | keyvalue | slice:1">
-      <p>{{item.key}}</p>
-      <input [ngModel]="item.value" (ngModelChange)="mychange($event,item.key)">
+    <section *ngFor="let item of component | keyvalue ">
+      <div *ngIf="acceptableItem(item)">
+        <p>{{item.key}}</p>
+        <input [ngModel]="item.value" (ngModelChange)="mychange($event,item.key)">
+      </div>
     </section>
   </main>
 </section>

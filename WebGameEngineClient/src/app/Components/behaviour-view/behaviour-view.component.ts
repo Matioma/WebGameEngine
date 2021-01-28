@@ -33,4 +33,9 @@ export class BehaviourViewComponent implements OnInit {
     this.component[key] = event;
     console.log(event, key);
   }
+  acceptableItem(item) {
+    console.log(item);
+    if (item.key == 'componentName' || item.key == 'owner') return false;
+    return true;
+  }
 }
