@@ -89,7 +89,6 @@ export class MainEngine {
             if (behaviour[property]) {
               newBehaviour[property] = behaviour[property];
             }
-            //behaviour[property] = newBehaviour[property];
           }
         });
         gameProject.scene.AddChild(object);
