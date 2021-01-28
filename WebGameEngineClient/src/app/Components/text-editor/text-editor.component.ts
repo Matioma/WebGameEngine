@@ -28,4 +28,17 @@ export class TextEditorComponent implements OnInit {
   SaveFile() {
     EditorController.getInstance().SaveFile(this.message);
   }
+
+  onKeydown($event) {
+    if ($event.key === 'Tab') {
+      $event.preventDefault();
+      console.log($event);
+      var start = $event.target.selectionStart;
+      var end = $event.target.selectionEnd;
+
+      this.message =
+        this.message.substring(0, start) + '\t' + this.message.substring(end);
+      $event.target.selectionStart = start + 1;
+    }
+  }
 }

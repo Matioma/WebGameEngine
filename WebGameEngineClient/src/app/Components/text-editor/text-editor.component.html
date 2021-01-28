@@ -4,6 +4,6 @@
     <button class="button" (click)="SaveFile()">Save</button>
   </header>
   <main>
-    <textarea [(ngModel)]="message">{{message}}</textarea>
+    <textarea [(ngModel)]="message" (keydown)="onKeydown($event)">{{message}}</textarea>
   </main>
 </section>
