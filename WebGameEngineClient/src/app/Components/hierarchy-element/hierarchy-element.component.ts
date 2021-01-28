@@ -18,7 +18,7 @@ export class HierarchyElementComponent implements OnInit {
 
   onClick() {
     // console.log('Select');
-    console.log(this.object.behaviours);
+    // console.log(this.object.behaviours);
     EditorController.getInstance().SelectObject(this.object);
   }
 

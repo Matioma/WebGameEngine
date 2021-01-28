@@ -22,14 +22,22 @@ export class EditorController implements UIActions {
     this.projectModel = gameProject;
   }
 
+  set ProjectModel(projectModel: ProjectModel) {
+    this.projectModel = projectModel;
+  }
+
+  Delete() {
+    EditorController.instance = null;
+  }
+
   static getInstance() {
     if (EditorController.instance) return this.instance;
-    throw new Error('EditorController not initialized');
+    // console.error()
+    return null; //Error('EditorController not initialized');
   }
 
   SelectObject(gameObject: GameObject) {
     this.projectModel.selectedObject = gameObject;
-    // console.log(gameObject);
   }
 
   CreateObject(gameObject: GameObject) {
@@ -58,6 +66,10 @@ export class EditorController implements UIActions {
       this.selectedScriptKey = null;
       console.log(this.projectModel.project);
     }
+
+    MainEngine.GetInstance().recompile(
+      MainEngine.GetInstance().projectModel.project
+    );
   }
   CloseFile() {
     this.selectedScriptKey = null;
