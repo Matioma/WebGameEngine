@@ -17,11 +17,7 @@ export class MainEngine {
     }
     MainEngine.instance = this;
 
-    // this.projectModel = new ProjectModel(project);
-    // this.editorController = new EditorController(this.projectModel);
     this.compileCode(project);
-    // this.projectModel = new ProjectModel(this.ParseData(project));
-    // this.editorController = new EditorController(this.projectModel);
   }
 
   InitializeRenderer(canvas) {
@@ -96,5 +92,7 @@ export class MainEngine {
 
   Delete() {
     MainEngine.instance = null;
+    EditorController.getInstance().Delete();
+    console.log(MainEngine.instance);
   }
 }

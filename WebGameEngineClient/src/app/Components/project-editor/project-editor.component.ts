@@ -113,4 +113,8 @@ export class ProjectEditorComponent implements OnInit {
         console.log(data);
       });
   }
+
+  ResetEngine() {
+    MainEngine.GetInstance().Delete();
+  }
 }
