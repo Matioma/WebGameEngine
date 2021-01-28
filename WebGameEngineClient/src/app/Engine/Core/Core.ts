@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 // import { Script } from 'vm';
 import { MainEngine } from '../MainEngine';
+import { Renderer } from '../Renderer/Renderer';
 
 export class Core {
   constructor() {
@@ -93,6 +94,7 @@ export class GameObject implements dynamicObject {
   update() {
     this.behaviours.forEach((component) => {
       component.update();
+      component.draw(Renderer.getInstance());
     });
   }
 

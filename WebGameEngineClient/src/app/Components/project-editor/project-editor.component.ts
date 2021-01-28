@@ -32,70 +32,10 @@ export class ProjectEditorComponent implements OnInit {
       //let projectParsed: GameProject = this.ParseData(data);
 
       this.EngineInstance = new MainEngine(data);
+      this.EngineInstance.InitializeRenderer(this.canvas);
       this.EngineInstance.Run();
     });
   }
-
-  // ParseData(data): GameProject {
-  //   let rawDataGameProject = data;
-
-  //   let sceneData = new Scene(rawDataGameProject.name);
-  //   //ParseChildren
-
-  //   // if (rawDataGameProject.scene.children != undefined) {
-  //   //   rawDataGameProject.scene.children.forEach((element) => {
-  //   //     sceneData.AddChild(element);
-  //   //   });
-  //   // }
-
-  //   let gameProject: GameProject = new GameProject();
-  //   gameProject.scene = sceneData;
-
-  //   // gameProject.CreateComponent(
-  //   //   'Draw',
-  //   //   `()=>{ return class draw{
-  //   //       constructor(){
-  //   //          console.log("Draw created");
-  //   //       }
-  //   //       update(){
-  //   //         console.log('Draw being Updated');
-  //   //       }
-  //   //     }
-  //   //   }`
-  //   // );
-
-  //   //console.log(rawDataGameProject);
-
-  //   console.log(rawDataGameProject);
-
-  //   for (var key in rawDataGameProject.scripts) {
-  //     gameProject.scripts[key] = rawDataGameProject.scripts[key];
-  //   }
-
-  //   if (rawDataGameProject.scene.children != undefined) {
-  //     rawDataGameProject.scene.children.forEach((element) => {
-  //       let object: GameObject = new GameObject(element.name);
-
-  //       //Adding all behavriours
-  //       element.behaviours.forEach((behaviour) => {
-  //         console.log(behaviour, 'weird');
-
-  //         let behaviourObject = object.AddBehaviour(
-  //           behaviour.componentName,
-  //           gameProject
-  //         );
-  //         for (const property in behaviour) {
-  //           behaviourObject[property] = behaviour[property];
-  //         }
-  //       });
-  //       gameProject.scene.AddChild(object);
-  //     });
-  //   }
-
-  //   //Parse Scripts
-
-  //   return gameProject;
-  // }
 
   ngAfterViewInit(): void {}
 

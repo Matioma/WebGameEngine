@@ -21,6 +21,7 @@ export class MainEngine {
   }
 
   InitializeRenderer(canvas) {
+    // console.log(canvas);
     this.renderer.Initialize(canvas);
   }
 
@@ -32,12 +33,16 @@ export class MainEngine {
       console.error('project was not initilized');
       return;
     }
+
+    //UpdateScene
     this.projectModel.project.scene.children.forEach((element) => {
       element.update();
     });
 
-    if (this.projectModel.project.scene) {
-    }
+    // this.projectModel.project.scene.children.forEach((element) => {
+    //   element.draw();
+    // });
+
     requestAnimationFrame(this.Loop);
   };
 
