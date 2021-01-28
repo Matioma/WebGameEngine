@@ -93,6 +93,7 @@ export class GameObject implements dynamicObject {
   }
   update() {
     this.behaviours.forEach((component) => {
+      //console.log('deltaTime', MainEngine.GetInstance().getDeltaTime());
       component.update(MainEngine.GetInstance().getDeltaTime());
       component.draw(Renderer.getInstance());
     });
@@ -134,9 +135,19 @@ export class GameObject implements dynamicObject {
       newBehavior.owner = this;
       newBehavior.componentName = newComponent;
 
+      console.log(this.behaviours);
       this.behaviours.push(newBehavior);
       return newBehavior;
     }
+  }
+
+  GetBehaviour(name: string) {
+    this.behaviours.forEach((behaviour) => {
+      if (behaviour.componentName == name) {
+        return behaviour.componentName;
+      }
+    });
+    return null;
   }
 }
 export class Scene extends GameObject {

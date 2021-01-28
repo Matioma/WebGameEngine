@@ -10,8 +10,9 @@ export class MainEngine {
   projectModel: ProjectModel;
   editorController: EditorController;
 
-  lastTime;
-  time;
+  lastTime = 0;
+  time = 0;
+  static deltaTime = 0;
 
   constructor(project: GameProject) {
     if (MainEngine.instance) {
@@ -21,7 +22,7 @@ export class MainEngine {
     MainEngine.instance = this;
 
     this.compileCode(project);
-    this.time = new Date().getMilliseconds();
+    this.time = Date.now();
     this.lastTime = this.time;
   }
 
@@ -31,7 +32,7 @@ export class MainEngine {
   }
 
   getDeltaTime() {
-    return (this.time - this.lastTime) / 100.0;
+    return (this.time - this.lastTime) / 1000.0;
   }
   Run() {
     this.Loop();
@@ -53,7 +54,10 @@ export class MainEngine {
 
     requestAnimationFrame(this.Loop);
     this.lastTime = this.time;
-    this.time = new Date().getMilliseconds();
+    this.time = Date.now();
+
+    //MainEngine.deltaTime = ;
+    //console.log(MainEngine.deltaTime);
   };
 
   static GetInstance(): MainEngine {

@@ -32,7 +32,7 @@ export class TextEditorComponent implements OnInit {
   onKeydown($event) {
     if ($event.key === 'Tab') {
       $event.preventDefault();
-      console.log($event);
+      //console.log($event);
       var start = $event.target.selectionStart;
       var end = $event.target.selectionEnd;
 

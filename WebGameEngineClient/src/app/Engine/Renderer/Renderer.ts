@@ -3,7 +3,7 @@ export class Renderer {
   private static instance;
 
   canvas;
-  private gl;
+  gl;
 
   private vsSource = `
     attribute vec4 aVertexPosition;
@@ -65,6 +65,7 @@ export class Renderer {
 
   setupContext() {
     this.gl = this.canvas.getContext('webgl');
+    this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     if (this.gl === null) {
       alert(
         'Unable to initialize WebGL. Your browser or machine may not support it.'
