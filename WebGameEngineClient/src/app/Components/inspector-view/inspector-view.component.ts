@@ -14,14 +14,25 @@ export class InspectorViewComponent implements OnInit {
   showDropDown: boolean = false;
   keys: String[] = [];
 
-  constructor() {}
+  static instance;
+
+  constructor() {
+    InspectorViewComponent.instance = this;
+  }
 
   ngOnInit(): void {
+    // this.parseScripts();
     for (const componentName in MainEngine.GetInstance().projectModel.project
       .scripts) {
       this.keys.push(componentName);
     }
   }
+
+  parseScripts() {
+    this.keys = [];
+    this.ngOnInit();
+  }
+
   ShowComponents() {
     this.showDropDown = !this.showDropDown;
   }

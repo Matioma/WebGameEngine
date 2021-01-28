@@ -1,3 +1,4 @@
+import { InspectorViewComponent } from 'src/app/Components/inspector-view/inspector-view.component';
 import { ProjectService } from 'src/app/Sevices/ProjectService/project.service';
 import { MainEngine } from '../MainEngine';
 import { GameObject, GameProject, ProjectModel } from './Core';
@@ -96,7 +97,6 @@ export class EditorController implements UIActions {
       }
     `;
     this.projectModel.project.CreateComponent(name, defaultClassDefinition);
-
-    this.SelectObject(this.projectModel.selectedObject);
+    InspectorViewComponent.instance.parseScripts();
   }
 }

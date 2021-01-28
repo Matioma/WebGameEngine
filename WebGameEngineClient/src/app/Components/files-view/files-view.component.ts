@@ -26,6 +26,9 @@ export class FilesViewComponent implements OnInit {
   }
 
   CreateScript() {
-    EditorController.getInstance().CreateScript(this.fileName);
+    if (this.fileName.trim().length > 0) {
+      EditorController.getInstance().CreateScript(this.fileName);
+    }
+    console.error('SCript must have a name');
   }
 }
