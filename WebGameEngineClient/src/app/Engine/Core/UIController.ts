@@ -102,7 +102,6 @@ export class EditorController implements UIActions {
 
   DeleteScript(key) {
     delete this.projectModel.project.scripts[key];
-    console.log(this.projectModel.project);
 
     this.projectModel.project.scene.children.forEach((child) => {
       child.behaviours.forEach((element) => {
@@ -113,6 +112,5 @@ export class EditorController implements UIActions {
         }
       });
     });
-    console.log(this.projectModel.project);
   }
 }
