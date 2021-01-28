@@ -13,12 +13,23 @@ export class FilesViewComponent implements OnInit {
   showForm: boolean = false;
   fileName: string = '';
 
+  scriptSlectedKey;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   openFile(scriptKey) {
     EditorController.getInstance().OpenScript(scriptKey);
+  }
+
+  selectKey(key) {
+    this.scriptSlectedKey = key;
+  }
+
+  DeleteScript() {
+    // console.log(`Delete ${this.scriptSlectedKey}`);
+    EditorController.getInstance().DeleteScript(this.scriptSlectedKey);
   }
 
   ToggleForm() {

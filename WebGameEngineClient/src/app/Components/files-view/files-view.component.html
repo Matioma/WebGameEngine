@@ -15,9 +15,11 @@
 
   </header>
   <main>
-    <figure *ngFor="let item of projectModel.project.scripts | keyvalue" (dblclick)="openFile(item.key)">
+    <figure *ngFor="let item of projectModel.project.scripts | keyvalue" (dblclick)="openFile(item.key)"
+      (click)="selectKey(item.key)">
       <img src="assets/Images/file.svg">
       <figcaption>{{item.key}}</figcaption>
+      <button *ngIf="item.key && item.key ==scriptSlectedKey" (click)="DeleteScript()">Delete</button>
     </figure>
   </main>
 </section>

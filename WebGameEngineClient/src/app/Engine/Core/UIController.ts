@@ -99,4 +99,9 @@ export class EditorController implements UIActions {
     this.projectModel.project.CreateComponent(name, defaultClassDefinition);
     InspectorViewComponent.instance.parseScripts();
   }
+
+  DeleteScript(key) {
+    delete this.projectModel.project.scripts[key];
+    console.log(this.projectModel.project);
+  }
 }
