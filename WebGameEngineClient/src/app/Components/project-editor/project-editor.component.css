@@ -25,14 +25,14 @@ canvas {
 
 .Hierarchy {
   width: 15%;
-  background-color: gray;
+  background-color: #e0afa0;
 
   overflow-y: scroll;
 }
 
 .inspector {
   width: 35%;
-  background-color: green;
+  background-color: #e0afa0;
   overflow-y: scroll;
 }
 
