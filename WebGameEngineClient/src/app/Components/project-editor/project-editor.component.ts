@@ -104,6 +104,12 @@ export class ProjectEditorComponent implements OnInit {
   }
 
   Save() {
+    this.EngineInstance.projectModel.project.scene.children.forEach((child) => {
+      child.behaviours.forEach((behaviour) => {
+        delete behaviour['owner'];
+      });
+    });
+
     this.projectService
       .SaveProject({
         id: this.id,

@@ -37,26 +37,41 @@ export class GameProject implements projectData {
   constructor() {
     this.scene = new Scene('Default scene');
 
-    // this.scripts.Transform = `() => {
-    //   return class transform {
-    //     constructor() {
-    //       console.log('Transform Class Created');
-    //     }
-    //     update(){
+    this.scripts.Transform = `()=>{
+      return class Tranform{
+        constructor(){
+          this.x = 0;
+          this.y = 0;
+          this.z = 0;
+        }
 
-    //     }
-    //   }
-    // }`;
-    // this.scripts.demo = `()=>{
-    //   return class Test{
-    //     constructor(){
-    //       this.p =20;
-    //     }
-    //     Run(){console.log('Run')}
-    //   }
-    // }`;
+        update(){
+
+        }
+
+        draw(){
+          
+        }
+      }
+    }`;
+    this.scripts.Mesh = `()=>{
+      return class Mesh{
+        constructor(){
+          this.x = 0;
+          this.y = 0;
+          this.z = 0;
+        }
+
+        update(){
+          console.log("this is mesh");
+        }
+
+        draw(){
+          console.log("this is Mesh");
+        }
+      }
+    }`;
   }
-
   CreateComponent(name: string, functionDefinition: string) {
     if (this.scripts[name]) {
       console.error(`The component ${name} was already defined in the project`);
@@ -80,7 +95,6 @@ export class GameObject implements dynamicObject {
     this.behaviours.forEach((component) => {
       component.update();
     });
-    console.log('gameObject here');
   }
 
   AddChild(newObject: GameObject) {
@@ -116,6 +130,7 @@ export class GameObject implements dynamicObject {
       //Compile Script
       let ComponentDefinition = eval(gameProject.scripts[newComponent])();
       let newBehavior = new ComponentDefinition();
+      newBehavior.owner = this;
       newBehavior.componentName = newComponent;
 
       this.behaviours.push(newBehavior);

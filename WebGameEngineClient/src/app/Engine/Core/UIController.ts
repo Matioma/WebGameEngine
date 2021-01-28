@@ -97,6 +97,8 @@ export class EditorController implements UIActions {
     InspectorViewComponent.instance.parseScripts();
   }
 
+  Test() {}
+
   DeleteScript(key) {
     delete this.projectModel.project.scripts[key];
 
