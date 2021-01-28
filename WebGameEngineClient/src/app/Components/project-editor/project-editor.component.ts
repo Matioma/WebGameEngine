@@ -66,4 +66,9 @@ export class ProjectEditorComponent implements OnInit {
   ResetEngine() {
     MainEngine.GetInstance().Delete();
   }
+
+  TogglePause() {
+    console.log('Cool');
+    MainEngine.GetInstance().togglePause();
+  }
 }

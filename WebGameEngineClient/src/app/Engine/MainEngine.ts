@@ -14,6 +14,8 @@ export class MainEngine {
   time = 0;
   static deltaTime = 0;
 
+  isPaused = true;
+
   constructor(project: GameProject) {
     if (MainEngine.instance) {
       console.error('Main Engine Already initialized');
@@ -26,6 +28,9 @@ export class MainEngine {
     this.lastTime = this.time;
   }
 
+  togglePause() {
+    this.isPaused = !this.isPaused;
+  }
   InitializeRenderer(canvas) {
     // console.log(canvas);
     this.renderer.Initialize(canvas);
@@ -38,23 +43,20 @@ export class MainEngine {
     this.Loop();
   }
   Loop = () => {
-    if (this.projectModel.project == undefined) {
-      console.error('project was not initilized');
-      return;
+    if (!this.isPaused) {
+      if (this.projectModel.project == undefined) {
+        console.error('project was not initilized');
+        return;
+      }
+      this.renderer.clearScreen(0, 0, 0);
+      //UpdateScene
+      this.projectModel.project.scene.children.forEach((element) => {
+        element.update();
+      });
+      this.lastTime = this.time;
+      this.time = Date.now();
     }
-    this.renderer.clearScreen(0, 0, 0);
-    //UpdateScene
-    this.projectModel.project.scene.children.forEach((element) => {
-      element.update();
-    });
-
-    // this.projectModel.project.scene.children.forEach((element) => {
-    //   element.draw();
-    // });
-
     requestAnimationFrame(this.Loop);
-    this.lastTime = this.time;
-    this.time = Date.now();
 
     //MainEngine.deltaTime = ;
     //console.log(MainEngine.deltaTime);
