@@ -2,11 +2,18 @@
   <header>
     <nav>
       <a routerLink="/dashboard" class="button" (click)="ResetEngine()">Back</a>
-      <button (click)="Save()">Save</button>
-    </nav>
-    <p>{{name}}</p>
 
-    <button (click)="TogglePause()">Play/Stop</button>
+    </nav>
+    <section class="EngineHeader">
+      <p>{{name}}</p>
+      <section>
+        <button class="confirm" (click)="Save()">Save</button>
+        <button class="confirm" (click)="TogglePause()">Play/Stop</button>
+      </section>
+    </section>
+
+
+
   </header>
 
 

@@ -31,3 +31,10 @@ h6 {
   padding: 20px;
   width: 200px;
 }
+
+.confirm {
+  background-color: green;
+  color: white;
+  border: 1px solid black;
+  padding: 5px;
+}
