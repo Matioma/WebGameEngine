@@ -14,29 +14,27 @@ export class ProjectComponent implements OnInit {
   @Output()
   projectUpdated = new EventEmitter();
 
-  // @ViewChild('projInput') input;
-  constructor(private projService: ProjectService, private router: Router) {
-    //this.projectData.projectName = 'Something';
-    // console.log();
-  }
+  constructor(
+    private projService: ProjectService,
+
+    private router: Router
+  ) {}
 
   onProjectUpdated(message: Object) {
     this.projectUpdated.emit(message);
   }
 
-  ngOnInit(): void {
-    // console.log(this.projectData.projectName, 'Vakye');
-    //this.projectData.projectName = 'Something';
-  }
+  ngOnInit(): void {}
   Edit() {}
   Delete() {
-    // let projectName = document.getElementById(this.projectData.ProjectName)
-    //   .value;
-    // this.projService
-    //   .DeleteProject({ ProjectName: projectName })
-    //   .subscribe((data) => {
-    //     this.onProjectUpdated({ success: true });
-    //   });
+    this.projService
+      .DeleteProject({ id: this.projectData._id })
+      .subscribe((data) => {
+        let d: any = data;
+        if (d.success) {
+          this.onProjectUpdated({ success: true });
+        }
+      });
   }
   Open() {
     this.router.navigate(['/project', this.projectData._id]);

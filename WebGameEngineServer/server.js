@@ -98,7 +98,7 @@ app.get("/api/Projects", async (req, res) => {
   sess = req.session;
 
   let result = await GameProject.find({ login: sess.login });
-  console.log(result);
+  // console.log(result);
   res.json(result);
 });
 
@@ -126,17 +126,22 @@ app.post("/api/Projects/add", (req, res) => {
 });
 
 app.post("/api/Projects/delete", async (req, res) => {
-  const { ProjectName } = req.body;
+  console.log(req.body);
+
+  const { id } = req.body;
+  // const { ProjectName } = req.body;
   sess = req.session;
   const Login = sess.login;
 
   if (Login) {
-    let result = await ProjectTest.deleteOne({ Login, ProjectName });
-    console.log(result);
+    let result = await ProjectTest.findByIdAndDelete(id);
+    console.log("DEleted", result);
     res.json({ success: true });
   } else {
     res.json({ success: false });
   }
+
+  // res.json({ success: false });
 });
 
 app.post("/api/Projects/save", async (req, res) => {

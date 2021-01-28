@@ -19,7 +19,6 @@ export class ProjectsViewComponent implements OnInit {
   ngOnInit(): void {
     this.projSer.GetProjects().subscribe((data) => {
       this.projects = data;
-      // console.log(data);
     });
   }
 
@@ -49,5 +48,9 @@ export class ProjectsViewComponent implements OnInit {
     if ($event.success) {
       this.ngOnInit();
     }
+  }
+
+  projectUpdate($event) {
+    this.UpdateProjectsList($event);
   }
 }

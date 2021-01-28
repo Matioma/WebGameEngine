@@ -32,8 +32,8 @@ export class ProjectService {
     return this.http.post('api/Projects/add', project);
   }
 
-  DeleteProject(data: Project) {
-    return this.http.post('/api/Projects/delete', data);
+  DeleteProject(_id) {
+    return this.http.post('/api/Projects/delete', _id);
   }
 
   SaveProject(object: any) {
