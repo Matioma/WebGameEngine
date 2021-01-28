@@ -98,7 +98,6 @@ app.get("/api/Projects", async (req, res) => {
   sess = req.session;
 
   let result = await GameProject.find({ login: sess.login });
-  // console.log(result);
   res.json(result);
 });
 
@@ -129,7 +128,6 @@ app.post("/api/Projects/delete", async (req, res) => {
   console.log(req.body);
 
   const { id } = req.body;
-  // const { ProjectName } = req.body;
   sess = req.session;
   const Login = sess.login;
 
@@ -140,37 +138,23 @@ app.post("/api/Projects/delete", async (req, res) => {
   } else {
     res.json({ success: false });
   }
-
-  // res.json({ success: false });
 });
 
 app.post("/api/Projects/save", async (req, res) => {
   sess = req.session;
   const login = sess.login;
 
-  // console.log(req.body);
-
   const projectName = "test";
   const { id, gameProject } = req.body;
 
-  // console.log(id, gameProject);
-
   if (login) {
     const doc = await GameProject.findById(id);
-
-    // console.log(doc);
-
-    // const newScene = currentScene;
-
-    // console.log(gameProject.name);
     const update = {
       scene: gameProject.scene,
       scripts: gameProject.scripts,
-      // name: gameProject.name,
     };
 
     await doc.updateOne(update);
-    console.log("updated");
     res.json({ success: true, message: ` save to the data base` });
   } else {
     res.json({ success: false, message: "Cookie missing" });

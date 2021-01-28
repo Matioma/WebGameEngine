@@ -25,10 +25,8 @@ export class ProjectsViewComponent implements OnInit {
   AddProject(projectName: string) {
     let newProject: GameProject = new GameProject();
     newProject.name = projectName;
-    // console.log(newProject);
 
     this.projSer.AddProject(newProject).subscribe((response) => {
-      // console.log(response);
       this.ngOnInit();
     });
   }
