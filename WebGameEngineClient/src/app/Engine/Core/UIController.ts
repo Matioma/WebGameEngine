@@ -38,8 +38,7 @@ export class EditorController implements UIActions {
 
   static getInstance() {
     if (EditorController.instance) return this.instance;
-    // console.error()
-    return null; //Error('EditorController not initialized');
+    return null;
   }
 
   SelectObject(gameObject: GameObject) {
@@ -52,7 +51,6 @@ export class EditorController implements UIActions {
 
   OpenScript(key) {
     this.selectedScriptKey = key;
-    console.log(key);
   }
 
   SaveFile(sourceCode: string) {
@@ -68,7 +66,6 @@ export class EditorController implements UIActions {
     if (!compileFailed) {
       this.projectModel.project.scripts[this.selectedScriptKey] = sourceCode;
       this.selectedScriptKey = null;
-      console.log(this.projectModel.project);
     }
 
     MainEngine.GetInstance().recompile(
@@ -108,7 +105,6 @@ export class EditorController implements UIActions {
         if (element.componentName === key) {
           let index = child.behaviours.indexOf(element);
           child.behaviours.splice(index, 1);
-          console.log(index);
         }
       });
     });

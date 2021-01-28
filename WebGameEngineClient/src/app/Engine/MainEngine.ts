@@ -32,6 +32,10 @@ export class MainEngine {
       console.error('project was not initilized');
       return;
     }
+    this.projectModel.project.scene.children.forEach((element) => {
+      element.update();
+    });
+
     if (this.projectModel.project.scene) {
     }
     requestAnimationFrame(this.Loop);
@@ -75,10 +79,6 @@ export class MainEngine {
             behaviour.componentName,
             gameProject
           );
-          // for (const property in behaviour) {
-          //   behaviourObject[property] = behaviour[property];
-          // }
-
           for (const property in behaviourObject) {
             behaviour[property] = behaviourObject[property];
           }
