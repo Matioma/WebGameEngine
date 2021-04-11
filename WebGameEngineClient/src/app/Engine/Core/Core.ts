@@ -35,6 +35,10 @@ export class GameProject implements projectData {
 
   scene: Scene;
 
+  getCOunt(): Number {
+    return 4;
+  }
+
   constructor() {
     this.scene = new Scene('Default scene');
 

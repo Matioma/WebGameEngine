@@ -23,6 +23,7 @@ import { BehaviourViewComponent } from './Components/behaviour-view/behaviour-vi
 import { FilesViewComponent } from './Components/files-view/files-view.component';
 import { FileIconComponent } from './Components/file-icon/file-icon.component';
 import { TextEditorComponent } from './Components/text-editor/text-editor.component';
+import { DemoComponent } from './Components/demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TextEditorComponent } from './Components/text-editor/text-editor.compon
     FilesViewComponent,
     FileIconComponent,
     TextEditorComponent,
+    DemoComponent,
   ],
   imports: [
     BrowserModule,
